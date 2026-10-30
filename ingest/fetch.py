@@ -61,7 +61,7 @@ def collect(session, output):
     }
     try:
         # This API has no numbered pages: traverse its documented letter groups.
-        for letter in string.ascii_lowercase:
+        for letter in string.ascii_lowercase: #string.ascii_lowercase contains abcdefghijklmnopqrstuvwxyz
             successful = False
             for attempt in range(1, MAX_ATTEMPTS + 1):
                 # Pace every request, including retries, after the preceding one.
@@ -71,7 +71,7 @@ def collect(session, output):
                 response = None
                 try:
                     response = session.get(
-                        API_URL, params={"f": letter}, timeout=(10, 30),
+                        API_URL, params={"f": letter}, timeout=(10, 30), #That produces requests ending in ?f=a, then ?f=b, and so on.
                         allow_redirects=False,
                     )
                     # Preserve original bytes; error bodies may not actually be JSON.
