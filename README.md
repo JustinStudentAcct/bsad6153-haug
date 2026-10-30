@@ -1,8 +1,18 @@
-# BSAD 6153 Project: Beer Recommendations
+# BSAD 6153 Project: Meal Recommendations and Ingredient Shopping
 
 **Student:** Justin Haug
-**My decision:** I want to decide what beers should be recommended based on previous preferences
+**My decision:** I want to decide what meals to prepare based on my preferences and available ingredients, and what ingredients I need to buy.
 **Website:** &lt;your domain, from Week 4&gt;
+
+The planned web app will help users discover recipes, choose meals, and build an ingredient shopping
+list. Users will be able to exclude ingredients they already have from the shopping list. Grocery
+product and pricing integration is a future goal; its API access and data-use permissions still need
+to be confirmed.
+
+The current recipe source is [TheMealDB](https://www.themealdb.com/). As of October 30, 2026, the project
+has retrieved 790 unique recipes through first-letter searches from `a` through `z`. Raw API responses
+and the combined recipe collection are stored locally in `data/raw/`, which Git ignores. Field
+definitions and data-use notes are documented in [the data dictionary](docs/data_dictionary.md).
 
 This repository is one complete AI system, built over eight weeks: a real API, synced on a schedule into a
 PostgreSQL database, shown on a public website, with a chatbot and an agent that answer and act from your
@@ -95,14 +105,29 @@ every command before you approve it, and keep auto-approve off.
 ---
 
 ## Project proposal (Week 1)
-
+My chosen API is from TheMealDB at https://www.themealdb.com/api/json/v1/ and my backup will be from Edamam at https://developer.edamam.com/meal-planner-api. The decision I chose was what to have for dinner. There are 4 people in my family, all members now being old enough to have an opinion, but only 2.5 people capable of cooking a family meal. The family has traditionally enjoyed picking meals by way of doom scrolling through available meals from meal delivery services. Those services cost more than they would if you did the meal planning yourself, but we as a family came to enjoy the images as meal ideas. I wanted to retain the images of meals as part of the recommendation ideally, but if that's not possible, the recommendation engine would still be of value. 
 <!-- About 300 words: data source and backup API, your decision and workflow (from your baseline log),
      your first agent idea, and risks. See the Week 1 page. -->
 
 ## How to run this project
 
+Fetch recipes from scratch using the project's virtual environment:
+
+```powershell
+.venv/Scripts/python.exe ingest/fetch.py
+```
+
+Each run queries `a` through `z` and writes original responses, combined recipes, a summary,
+and a log to a new timestamped folder under `data/raw/`. See [ingestion instructions](ingest/README.md)
+for pacing, retry handling, and output details.
+
 <!-- Keep this current: how to run the sync, the website, and the evaluations. -->
 
 ## Credits
+
+Recipe data: [TheMealDB](https://www.themealdb.com/). See its
+[API documentation](https://www.themealdb.com/documentation) and
+[terms of use](https://www.themealdb.com/terms_of_use.php). Recipe records retain their original source
+links where provided.
 
 <!-- Your data API's required attribution, plus any open-source code or samples you used. -->
