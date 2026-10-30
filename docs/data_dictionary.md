@@ -32,7 +32,7 @@ The `idMeal` field is the unique identifier for records. Recipes records do not 
 TheMealDB does not publish an update schedule in the documentation reviewed. Recipes include a dateModified field, suggesting existing records can change, but this field is missing for 303 of the 790 downloaded recipes. To detect updates, I would periodically retrieve recipes again, identify previously unseen idMeal values, and compare existing records’ contents for changes. This is a proposed approach and has not yet been implemented.
 
 ## **Suprises:**
-This probably shouldn't surprise me, but I was expecting a value for dateModified on each record, but less than half actually had them.
+This probably shouldn't surprise me, but I was expecting a value for dateModified on each record, but just over half actually had them.
 
 ## **Data-use ethics check:**
 - **Terms:** TheMealDB permits copying, storing, and modifying content obtained through official API endpoints for development use, but prohibits website scraping and API resale without permission; app-store publication requires paid access, and artwork attribution, existing notices, and third-party content rights must be respected. Commercial deployment would require reviewing the applicable access terms rather than assuming unrestricted permission.
