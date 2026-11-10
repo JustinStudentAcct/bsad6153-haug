@@ -122,6 +122,10 @@ Each run queries `a` through `z` and writes original responses, combined recipes
 and a log to a new timestamped folder under `data/raw/`. See [ingestion instructions](ingest/README.md)
 for pacing, retry handling, and output details.
 
+For Milestone 2, follow the [Supabase connection and load instructions](ingest/README.md#load-the-milestone-1-snapshot-into-supabase).
+See the [schema diagram](docs/schema.md), [business queries](db/queries.sql), and
+[running decision questions](docs/decision_questions.md).
+
 <!-- Keep this current: how to run the sync, the website, and the evaluations. -->
 
 ## Credits

@@ -5,7 +5,7 @@ Your project's written evidence. Each file is described on its week's Canvas pag
 | Week | File |
 |---|---|
 | 1 | `data_dictionary.md`, `baseline_log.md` (template provided) |
-| 2 | `schema.md` (ER diagram and access roles), `data_quality.md`, `implementation_brief.md` |
+| 2 | `schema.md` (ER diagram and access roles), `data_quality.md`, `decision_questions.md`, `implementation_brief.md` |
 | 3 | `sync_tests.md` |
 | 4 | `app_spec.md`, `code_tour.md`, `app_verification.md`, `peer_review.md`, `usage_log.md` (template provided) |
 | 5 | `chatbot_rules.md`, `eval_week5.md` |
