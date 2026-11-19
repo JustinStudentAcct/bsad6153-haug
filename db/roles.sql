@@ -9,9 +9,15 @@
 -- Then put the role's connection string in .env as APP_DATABASE_URL.
 --
 -- Week 2: a read-only role for the website, chatbot, and golden-question checker.
--- create role app_reader login;
--- grant usage on schema public to app_reader;
--- grant select on <your data tables> to app_reader;
+-- Run once after db/schema.sql in the Supabase SQL Editor.
+begin;
+
+create role app_reader login;
+grant usage on schema public to app_reader;
+grant select on table public.recipes, public.ingredients, public.recipe_ingredients
+    to app_reader;
+
+commit;
 --
 -- Week 3: add sync_runs to the grant above when you create it.
 --
