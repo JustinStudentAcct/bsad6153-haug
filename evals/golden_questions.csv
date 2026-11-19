@@ -1,0 +1,91 @@
+id,question,category,reference_sql,correct_behavior,source
+Q01,"What chicken, pasta, or seafood dinner ideas can we browse with photos?",lookup,"select category, name, country, image_url
+from public.recipes
+where category in ('Chicken', 'Pasta', 'Seafood')
+  and image_url is not null
+order by category, name, meal_id","Give matching recipe names, categories, and stored photo links from the result. If showing a shortlist, label it as a shortlist.",baseline
+Q02,"I have eggs, rice, and garlic. Which meals use all three and need the fewest other ingredients?",compare,"select r.meal_id, r.name, r.image_url,
+       count(distinct i.ingredient_key) filter (
+           where i.ingredient_key not in ('eggs', 'rice', 'garlic')
+       ) as other_ingredients
+from public.recipes as r
+join public.recipe_ingredients as ri on ri.recipe_id = r.recipe_id
+join public.ingredients as i on i.ingredient_key = ri.ingredient_key
+group by r.recipe_id
+having count(distinct i.ingredient_key) filter (
+    where i.ingredient_key in ('eggs', 'rice', 'garlic')
+) = 3
+order by other_ingredients, r.name, r.meal_id","Rank the matches by the count of distinct other ingredient names. Give names and counts. Explain that the pantry match uses the exact normalized names eggs, rice, and garlic.",baseline
+Q03,What should I buy for Acaraje if I already have garlic and salt?,lookup,"select ri.slot_number, i.name as ingredient, ri.measure
+from public.recipes as r
+join public.recipe_ingredients as ri on ri.recipe_id = r.recipe_id
+join public.ingredients as i on i.ingredient_key = ri.ingredient_key
+where r.meal_id = '53483'
+  and i.ingredient_key not in ('garlic', 'salt')
+order by ri.slot_number",Give the remaining ingredients and their original measures in recipe order. Keep repeated slots separate when preparation or measures differ. Leave garlic and salt off the list.,baseline
+Q04,Which recipes need me to double-check an ingredient quantity before I shop?,aggregate,"select r.meal_id, r.name, count(*) as missing_measures,
+       string_agg(i.name, ', ' order by ri.slot_number) as ingredients_to_check
+from public.recipes as r
+join public.recipe_ingredients as ri on ri.recipe_id = r.recipe_id
+join public.ingredients as i on i.ingredient_key = ri.ingredient_key
+where ri.measure is null
+group by r.recipe_id
+order by missing_measures desc, r.name, r.meal_id",Identify recipes with populated ingredient slots that have no measure. Give the missing-measure count and the affected ingredients for each recipe shown. Do not guess quantities.,baseline
+Q05,"Which chicken or pasta recipes with photos did TheMealDB update most recently from January 1 through October 30, 2026? Show me up to 20.",trend,"select meal_id, name, category, source_modified_at, image_url
+from public.recipes
+where category in ('Chicken', 'Pasta')
+  and image_url is not null
+  and source_modified_at >= timestamp '2026-01-01'
+  and source_modified_at < timestamp '2026-10-31'
+order by source_modified_at desc, name, meal_id
+limit 20","Give names, categories, reported modification dates, and photo links in newest-first order. Use the fixed date window requested and distinguish source modification dates from sync dates.",baseline
+Q06,Can you show me five Cambodian recipes with photos?,lookup,"select meal_id, name, category, image_url
+from public.recipes
+where country = 'Cambodia' and image_url is not null
+order by name, meal_id
+limit 5",Return up to five matching names and photo links. Use the country label Cambodia and include eligible recipes even when area and tags are missing.,other
+Q07,Which five desserts call for the fewest different ingredients?,aggregate,"select r.meal_id, r.name, count(distinct ri.ingredient_key) as ingredient_count
+from public.recipes as r
+join public.recipe_ingredients as ri on ri.recipe_id = r.recipe_id
+where r.category = 'Dessert'
+group by r.recipe_id
+order by ingredient_count, r.name, r.meal_id
+limit 5","Give up to five desserts and their distinct ingredient counts, smallest first. Break ties by name and meal ID. Count repeat slots for the same ingredient only once.",other
+Q08,What five ingredients show up in the most recipes?,aggregate,"select i.name, count(distinct ri.recipe_id) as recipe_count
+from public.ingredients as i
+join public.recipe_ingredients as ri on ri.ingredient_key = i.ingredient_key
+group by i.ingredient_key
+order by recipe_count desc, i.ingredient_key
+limit 5",Give five ingredient names and the distinct recipe count for each in descending order. Count each recipe once per ingredient.,other
+Q09,Can you give me five vegetarian recipes that use chickpeas?,lookup,"select r.meal_id, r.name, r.image_url
+from public.recipes as r
+where r.category = 'Vegetarian'
+  and exists (
+      select 1 from public.recipe_ingredients as ri
+      where ri.recipe_id = r.recipe_id and ri.ingredient_key = 'chickpeas'
+  )
+order by r.name, r.meal_id
+limit 5",Give up to five recipes in the Vegetarian category with a chickpeas ingredient slot. Qualify a shortlist if fewer than five match. Treat the source category as a label.,other
+Q10,Do we have more Italian or Spanish pasta recipes with photos?,compare,"select countries.country, count(r.recipe_id) as recipe_count
+from (values ('Italy'), ('Spain')) as countries(country)
+left join public.recipes as r
+    on r.country = countries.country and r.category = 'Pasta' and r.image_url is not null
+group by countries.country
+order by recipe_count desc, countries.country","Report both counts, including zero if applicable. State which count is larger or whether there is a tie. Limit the comparison to database recipes in the Pasta category with photos.",other
+Q11,"What's the ingredient list for Spaghetti Carbonara, in the order I'd use on the recipe card?",lookup,"select r.meal_id, r.name, ri.slot_number, i.name as ingredient, ri.measure
+from public.recipes as r
+join public.recipe_ingredients as ri on ri.recipe_id = r.recipe_id
+join public.ingredients as i on i.ingredient_key = ri.ingredient_key
+where lower(r.name) in ('spaghetti carbonara', 'spaghetti alla carbonara')
+order by r.meal_id, ri.slot_number",Recognize Spaghetti alla Carbonara as a match. Give the stored recipe name and show each ingredient in slot order with its measure. Flag any missing measure and keep distinct recipes separate.,other
+Q12,"When did our recipe data last sync successfully, and how many recipes were added or updated in the past week?",trend,"select max(finished_at) as last_success,
+       coalesce(sum(records_inserted) filter (where finished_at >= now() - interval '7 days'), 0) as recipes_added,
+       coalesce(sum(records_updated) filter (where finished_at >= now() - interval '7 days'), 0) as recipes_updated
+from public.sync_runs
+where status = 'success'","Give the latest successful sync with its time zone and separate seven-day totals for inserted and updated recipes. A successful no-change run still counts for freshness. If no success is recorded, say so.",other
+Q13,"Between spaghetti carbonara, Acaraje, and fish tacos, which one would my whole household agree to eat tonight?",should_decline,,Explain that the recipe database has no household preferences or votes. Ask for everyone's constraints or favorites before narrowing the suggestions.,baseline
+Q14,"What can I make tonight without shopping, using exactly what's in my pantry and fridge right now?",should_decline,,Explain that there is no current pantry or fridge inventory. Ask what ingredients and amounts are on hand before claiming a meal can be made without shopping.,baseline
+Q15,Which leftovers in my fridge should we use first?,should_decline,,Say that the database has no record of the household's leftovers or storage dates. Ask what is there and when it was made or stored. Do not guess which item is oldest or safe.,baseline
+Q16,We've only got 25 minutes. Which dinners in our recipe database can we definitely finish in time?,should_decline,,Explain that reliable total prep and cook times are unavailable. Do not guarantee a finish time or treat individual timed steps as the total.,baseline
+Q17,"What will my shopping list cost at our Kroger today, and is everything in stock?",should_decline,,"Explain that live store prices, stock, and product matches are unavailable. Do not invent a basket total or availability. Offer to provide the recipe shopping list.",baseline
+Q18,Which country's food is most popular based on which country has the most recipes here?,should_decline,,Explain that recipe counts measure collection coverage and cannot establish cuisine popularity. Offer to show how many recipes the database contains by country label.,other

@@ -33,6 +33,7 @@ Mark any entry you had to reconstruct from memory as *(reconstructed)*.
 |11-16-2026|What to have for dinner|Fridge, Pantry, Freezer, Wife,  Kids|9 minutes|If we were planning to eat with my mother-in-law|5 (most confident)|2|
 |11-17-2026|What to have for dinner|Fridge, Pantry, Freezer, Wife,  Kids|14 minutes|nothing more|5 (most confident)|2|
 |11-18-2026|What to have for dinner|Fridge, Pantry, Freezer, Wife,  Kids|1 minutes|nothing more|5 (most confident)|3|
+|11-19-2026|What to have for dinner|Fridge, Pantry, Freezer, Wife,  Kids|10 minutes|nothing more|5 (most confident)|2|
 
 ## Reflection
 
