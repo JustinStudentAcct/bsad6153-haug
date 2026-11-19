@@ -40,6 +40,12 @@ def read_snapshot(path):
         if meal_id in slots_by_meal:
             raise ValueError(f"Duplicate idMeal in snapshot: {meal_id}.")
 
+        required = ("strMeal", "strCategory", "strCountry", "strInstructions")
+        required_text = {field: optional_text(meal, field) for field in required}
+        missing = [field for field in required if required_text[field] is None]
+        if missing:
+            raise ValueError(f"Meal {meal_id} is missing required fields: {', '.join(missing)}.")
+
         modified = optional_text(meal, "dateModified")
         if modified:
             modified = datetime.fromisoformat(modified)
@@ -47,11 +53,11 @@ def read_snapshot(path):
                 raise ValueError(f"Meal {meal_id}: dateModified includes an unexpected offset.")
         recipe_rows.append((
             meal_id,
-            optional_text(meal, "strMeal"),
-            optional_text(meal, "strCategory"),
-            optional_text(meal, "strCountry"),
+            required_text["strMeal"],
+            required_text["strCategory"],
+            required_text["strCountry"],
             optional_text(meal, "strArea"),
-            optional_text(meal, "strInstructions"),
+            required_text["strInstructions"],
             optional_text(meal, "strMealThumb"),
             optional_text(meal, "strSource"),
             modified,

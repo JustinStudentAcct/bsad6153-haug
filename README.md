@@ -126,6 +126,21 @@ For Milestone 2, follow the [Supabase connection and load instructions](ingest/R
 See the [schema diagram](docs/schema.md), [business queries](db/queries.sql), and
 [running decision questions](docs/decision_questions.md).
 
+### Scheduled recipe sync (Milestone 3)
+
+The [Recipe sync workflow](.github/workflows/sync.yml) runs every six hours during
+the assignment to allow time to collect at least three scheduled runs. It runs
+at 01:17, 07:17, 13:17, and 19:17 UTC, away from the top of the hour. Each scan
+makes 26 paced TheMealDB requests, for 104 requests per day before retries.
+After the assignment, I'm expecting to change the  schedule to daily or less often based
+on how infrequently the source changes.
+
+Set `DATABASE_URL` in the repository's Actions secrets to the Supabase owner
+Session pooler connection string. Once the workflow is on `main`, select
+**Actions → Recipe sync → Run workflow** to verify it. The manual run is logged
+in `sync_runs` with `trigger = 'manual'`. The three assignment runs are logged
+with `trigger = 'schedule'`.
+
 <!-- Keep this current: how to run the sync, the website, and the evaluations. -->
 
 ## Credits
