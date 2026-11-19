@@ -138,7 +138,8 @@ def collect(session, output):
     return summary
 
 
-def main():
+def fetch_snapshot():
+    """Save a fresh snapshot and return its directory and fetch summary."""
     output = ROOT / "data" / "raw" / (
         "themealdb_" + datetime.now(timezone.utc).strftime("%Y%m%dT%H%M%S%fZ")
     )
@@ -157,6 +158,11 @@ def main():
         len(summary["failures"]), len(summary["skipped_records"]),
     )
     LOG.info("Results saved in %s", output)
+    return output, summary
+
+
+def main():
+    _, summary = fetch_snapshot()
     if not summary["complete"]:
         LOG.error("Run incomplete; see summary.json for details")
     return 0 if summary["complete"] else 1
