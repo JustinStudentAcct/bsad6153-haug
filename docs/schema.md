@@ -62,3 +62,44 @@ value. The loader creates a recipe with its populated slots in one transaction.
 
 The initial load uses the database owner's `DATABASE_URL`. The scaffold
 reserves `APP_DATABASE_URL` for the website and chatbot's separate read-only role.
+
+## Access Roles
+```
+\BASD_Project> @'
+>> import os
+>>
+>> import psycopg
+>> from dotenv import load_dotenv
+>>
+>> load_dotenv(dotenv_path=".env")
+>>
+>> statements = [
+>>     "select ingredient_key, name from public.ingredients order by ingredient_key limit 3",
+>>     "delete from public.ingredients where false",
+>>     "insert into public.ingredients (ingredient_key, name) "
+>>     "select 'permission_probe', 'Permission probe' where false",
+>> ]
+>>
+>> with psycopg.connect(os.environ["APP_DATABASE_URL"], autocommit=True) as conn:
+>>     for statement in statements:
+>>         print(f"\n{statement};")
+>>         try:
+>>             result = conn.execute(statement)
+>>         except psycopg.errors.InsufficientPrivilege as error:
+>>             print(f"ERROR: {error.diag.message_primary} (SQLSTATE {error.sqlstate})")
+>>         else:
+>>             if result.description is None:
+>>                 print(f"Unexpected success: {result.statusmessage}")
+>>             else:
+>>                 print(result.fetchall())
+>> '@ | .\.venv\Scripts\python.exe -
+
+select ingredient_key, name from public.ingredients order by ingredient_key limit 3;
+[('achiote paste', 'Achiote Paste'), ('achiote seeds', 'Achiote Seeds'), ('ackee', 'Ackee')]
+
+delete from public.ingredients where false;
+ERROR: permission denied for table ingredients (SQLSTATE 42501)
+
+insert into public.ingredients (ingredient_key, name) select 'permission_probe', 'Permission probe' where false;
+ERROR: permission denied for table ingredients (SQLSTATE 42501)
+```
