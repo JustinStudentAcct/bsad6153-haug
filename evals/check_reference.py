@@ -1,7 +1,10 @@
 """Check each golden-question SQL reference as app_reader."""
 
+import argparse
 import csv
+import json
 import os
+from datetime import UTC
 from pathlib import Path
 
 import psycopg
@@ -45,6 +48,13 @@ def read_questions(path):
 
 
 def main():
+    parser = argparse.ArgumentParser(description=__doc__)
+    parser.add_argument("--save-answers", type=Path, help="Save the live reference results as JSON.")
+    parser.add_argument("--compare-to", type=Path, help="Report IDs whose answers differ from a saved JSON file.")
+    args = parser.parse_args()
+    if args.save_answers and args.compare_to and args.save_answers.resolve() == args.compare_to.resolve():
+        parser.error("Use a different path for the new answers and the comparison baseline.")
+
     try:
         questions = read_questions(QUESTIONS)
     except (OSError, ValueError, csv.Error) as error:
@@ -57,46 +67,76 @@ def main():
         print("[FAIL] APP_DATABASE_URL is not set. Use the app_reader connection string.")
         return 1
 
+    capture_answers = bool(args.save_answers or args.compare_to)
+    answers = {}
     passed = failed = skipped = 0
     try:
         with psycopg.connect(url, connect_timeout=10) as conn:
             conn.read_only = True
+            conn.isolation_level = psycopg.IsolationLevel.REPEATABLE_READ
             with conn.transaction():
-                role = conn.execute("select current_user").fetchone()[0]
-            if role != "app_reader":
-                print("[FAIL] APP_DATABASE_URL must connect as app_reader.")
-                return 1
-            print(f"Checking {len(questions)} questions as app_reader.")
+                role, captured_at = conn.execute("select current_user, transaction_timestamp()").fetchone()
+                if role != "app_reader":
+                    print("[FAIL] APP_DATABASE_URL must connect as app_reader.")
+                    return 1
+                conn.execute("set local statement_timeout = '10s'")
+                conn.execute("set local time zone 'UTC'")
+                print(f"Checking {len(questions)} questions as app_reader.")
 
-            for row in questions:
-                question_id = row["id"]
-                if row["category"] == "should_decline":
-                    print(f"[SKIP] {question_id} is a decline case.")
-                    skipped += 1
-                    continue
+                for row in questions:
+                    question_id = row["id"]
+                    if row["category"] == "should_decline":
+                        print(f"[SKIP] {question_id} is a decline case.")
+                        skipped += 1
+                        continue
 
-                try:
-                    with conn.transaction():
-                        conn.execute("set local statement_timeout = '10s'")
-                        result = conn.execute(row["reference_sql"])
-                        has_rows = result.description is not None and result.fetchone() is not None
-                except psycopg.Error as error:
-                    print(f"[FAIL] {question_id} query error ({error.sqlstate or type(error).__name__}).")
-                    failed += 1
-                    continue
+                    try:
+                        with conn.transaction():
+                            result = conn.execute(row["reference_sql"])
+                            columns = [column.name for column in result.description or ()]
+                            rows = []
+                            if columns:
+                                rows = result.fetchall() if capture_answers else result.fetchmany(1)
+                    except psycopg.Error as error:
+                        print(f"[FAIL] {question_id} query error ({error.sqlstate or type(error).__name__}).")
+                        failed += 1
+                        continue
 
-                if has_rows:
+                    if not rows:
+                        print(f"[FAIL] {question_id} returned no rows.")
+                        failed += 1
+                        continue
+                    if capture_answers:
+                        answers[question_id] = {"columns": columns, "rows": rows}
                     print(f"[PASS] {question_id} returned at least one row.")
                     passed += 1
-                else:
-                    print(f"[FAIL] {question_id} returned no rows.")
-                    failed += 1
     except psycopg.Error as error:
         print(f"[FAIL] Could not use APP_DATABASE_URL ({error.sqlstate or type(error).__name__}).")
         return 1
 
     print(f"Reference queries: {passed} passed, {failed} failed. Decline cases: {skipped} skipped.")
-    return int(failed > 0)
+    if failed:
+        return 1
+
+    if capture_answers:
+        snapshot = {"captured_at_utc": captured_at.astimezone(UTC).isoformat(), "answers": answers}
+        serialized = json.dumps(snapshot, indent=2, ensure_ascii=False, default=str) + "\n"
+        try:
+            if args.compare_to:
+                baseline = json.loads(args.compare_to.read_text(encoding="utf-8"))["answers"]
+                current = json.loads(serialized)["answers"]
+                if not isinstance(baseline, dict) or baseline.keys() != current.keys():
+                    raise ValueError("The saved baseline and current run must have the same question IDs.")
+                changed = [question_id for question_id in current if current[question_id] != baseline[question_id]]
+                print(f"Changed reference answers: {', '.join(changed) or 'none'}.")
+            if args.save_answers:
+                args.save_answers.parent.mkdir(parents=True, exist_ok=True)
+                args.save_answers.write_text(serialized, encoding="utf-8")
+                print(f"Saved answers to {args.save_answers}.")
+        except (OSError, TypeError, KeyError, ValueError) as error:
+            print(f"[FAIL] Could not save or compare answers. {error}")
+            return 1
+    return 0
 
 
 if __name__ == "__main__":
