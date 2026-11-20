@@ -1,0 +1,1596 @@
+{
+  "captured_at_utc": "2026-11-19T20:43:02.488865+00:00",
+  "answers": {
+    "Q01": {
+      "columns": [
+        "category",
+        "name",
+        "country",
+        "image_url"
+      ],
+      "rows": [
+        [
+          "Chicken",
+          "Ayam Percik",
+          "Malaysia",
+          "https://www.themealdb.com/images/media/meals/020z181619788503.jpg"
+        ],
+        [
+          "Chicken",
+          "Belgian Waterzooi Chicken",
+          "Belgium",
+          "https://www.themealdb.com/images/media/meals/nmxec11782498644.jpg"
+        ],
+        [
+          "Chicken",
+          "Bengali Chicken Curry with Potatoes",
+          "Bangladesh",
+          "https://www.themealdb.com/images/media/meals/9ya6o71780262651.jpg"
+        ],
+        [
+          "Chicken",
+          "Brown Stew Chicken",
+          "Jamaica",
+          "https://www.themealdb.com/images/media/meals/sypxpx1515365095.jpg"
+        ],
+        [
+          "Chicken",
+          "Chick-Fil-A Sandwich",
+          "United States",
+          "https://www.themealdb.com/images/media/meals/sbx7n71587673021.jpg"
+        ],
+        [
+          "Chicken",
+          "Chicken & chorizo rice pot",
+          "Spain",
+          "https://www.themealdb.com/images/media/meals/fk80jp1763280767.jpg"
+        ],
+        [
+          "Chicken",
+          "Chicken & mushroom Hotpot",
+          "United Kingdom",
+          "https://www.themealdb.com/images/media/meals/uuuspp1511297945.jpg"
+        ],
+        [
+          "Chicken",
+          "Chicken Alfredo Primavera",
+          "Italy",
+          "https://www.themealdb.com/images/media/meals/syqypv1486981727.jpg"
+        ],
+        [
+          "Chicken",
+          "Chicken and Potato Roti",
+          "Barbados",
+          "https://www.themealdb.com/images/media/meals/mp9z0i1782238092.jpg"
+        ],
+        [
+          "Chicken",
+          "Chicken Basquaise",
+          "France",
+          "https://www.themealdb.com/images/media/meals/wruvqv1511880994.jpg"
+        ],
+        [
+          "Chicken",
+          "Chicken Congee",
+          "China",
+          "https://www.themealdb.com/images/media/meals/1529446352.jpg"
+        ],
+        [
+          "Chicken",
+          "Chicken Couscous",
+          "Morocco",
+          "https://www.themealdb.com/images/media/meals/qxytrx1511304021.jpg"
+        ],
+        [
+          "Chicken",
+          "Chicken Enchilada Casserole",
+          "Mexico",
+          "https://www.themealdb.com/images/media/meals/qtuwxu1468233098.jpg"
+        ],
+        [
+          "Chicken",
+          "Chicken Fajita Mac and Cheese",
+          "United States",
+          "https://www.themealdb.com/images/media/meals/qrqywr1503066605.jpg"
+        ],
+        [
+          "Chicken",
+          "Chicken Fried Rice",
+          "China",
+          "https://www.themealdb.com/images/media/meals/wuyd2h1765655837.jpg"
+        ],
+        [
+          "Chicken",
+          "Chicken Ham and Leek Pie",
+          "United Kingdom",
+          "https://www.themealdb.com/images/media/meals/xrrtss1511555269.jpg"
+        ],
+        [
+          "Chicken",
+          "Chicken Handi",
+          "India",
+          "https://www.themealdb.com/images/media/meals/wyxwsp1486979827.jpg"
+        ],
+        [
+          "Chicken",
+          "Chicken in Orange Sauce Recipe (Pollo a la Naranja)",
+          "Colombia",
+          "https://www.themealdb.com/images/media/meals/uuns781783804024.jpg"
+        ],
+        [
+          "Chicken",
+          "Chicken Karaage",
+          "Japan",
+          "https://www.themealdb.com/images/media/meals/tyywsw1505930373.jpg"
+        ],
+        [
+          "Chicken",
+          "Chicken Liver Pate Recipe",
+          "Barbados",
+          "https://www.themealdb.com/images/media/meals/hob03q1780264260.jpg"
+        ],
+        [
+          "Chicken",
+          "Chicken Lollipop",
+          "Dominica",
+          "https://www.themealdb.com/images/media/meals/nz0lg71784671684.jpg"
+        ],
+        [
+          "Chicken",
+          "Chicken Mandi",
+          "India",
+          "https://www.themealdb.com/images/media/meals/er4d081765186828.jpg"
+        ],
+        [
+          "Chicken",
+          "Chicken Marengo",
+          "France",
+          "https://www.themealdb.com/images/media/meals/qpxvuq1511798906.jpg"
+        ],
+        [
+          "Chicken",
+          "Chicken Parmentier",
+          "France",
+          "https://www.themealdb.com/images/media/meals/uwvxpv1511557015.jpg"
+        ],
+        [
+          "Chicken",
+          "Chicken Quinoa Greek Salad",
+          "Greece",
+          "https://www.themealdb.com/images/media/meals/k29viq1585565980.jpg"
+        ],
+        [
+          "Chicken",
+          "Chicken Salad With Mushrooms and Bacon",
+          "Denmark",
+          "https://www.themealdb.com/images/media/meals/t5rgav1784659936.jpg"
+        ],
+        [
+          "Chicken",
+          "Chicken Shawarma with homemade garlic herb yoghurt sauce",
+          "Saudi Arabia",
+          "https://www.themealdb.com/images/media/meals/hcg6l91763596970.jpg"
+        ],
+        [
+          "Chicken",
+          "Chicken wings with cumin, lemon & garlic",
+          "Turkey",
+          "https://www.themealdb.com/images/media/meals/4hzyvq1763792564.jpg"
+        ],
+        [
+          "Chicken",
+          "Chicken with saffron, raisins & pine nuts",
+          "Spain",
+          "https://www.themealdb.com/images/media/meals/4mhr3u1763481087.jpg"
+        ],
+        [
+          "Chicken",
+          "Chinese Orange Chicken",
+          "China",
+          "https://www.themealdb.com/images/media/meals/s73ytv1765567838.jpg"
+        ],
+        [
+          "Chicken",
+          "Coq au vin",
+          "France",
+          "https://www.themealdb.com/images/media/meals/qstyvs1505931190.jpg"
+        ],
+        [
+          "Chicken",
+          "Creamy Mustard Chicken",
+          "Colombia",
+          "https://www.themealdb.com/images/media/meals/4htbtm1783803558.jpg"
+        ],
+        [
+          "Chicken",
+          "Crock Pot Chicken Baked Tacos",
+          "Mexico",
+          "https://www.themealdb.com/images/media/meals/ypxvwv1505333929.jpg"
+        ],
+        [
+          "Chicken",
+          "Easy Spanish chicken",
+          "Spain",
+          "https://www.themealdb.com/images/media/meals/kzxflc1763194887.jpg"
+        ],
+        [
+          "Chicken",
+          "Extra crispy chicken wings",
+          "Dominica",
+          "https://www.themealdb.com/images/media/meals/feh9k21784665694.jpg"
+        ],
+        [
+          "Chicken",
+          "French Onion Chicken with Roasted Carrots & Mashed Potatoes",
+          "United States",
+          "https://www.themealdb.com/images/media/meals/b5ft861583188991.jpg"
+        ],
+        [
+          "Chicken",
+          "General Tsos Chicken",
+          "China",
+          "https://www.themealdb.com/images/media/meals/1529444113.jpg"
+        ],
+        [
+          "Chicken",
+          "Honey Balsamic Chicken with Crispy Broccoli & Potatoes",
+          "United States",
+          "https://www.themealdb.com/images/media/meals/kvbotn1581012881.jpg"
+        ],
+        [
+          "Chicken",
+          "Jamaican Curry Chicken Recipe",
+          "Jamaica",
+          "https://www.themealdb.com/images/media/meals/o5fuq51764789643.jpg"
+        ],
+        [
+          "Chicken",
+          "Jerk chicken with rice & peas",
+          "Jamaica",
+          "https://www.themealdb.com/images/media/meals/tytyxu1515363282.jpg"
+        ],
+        [
+          "Chicken",
+          "kabse",
+          "Saudi Arabia",
+          "https://www.themealdb.com/images/media/meals/utqnjv1763598650.jpg"
+        ],
+        [
+          "Chicken",
+          "Katsu Chicken curry",
+          "Japan",
+          "https://www.themealdb.com/images/media/meals/vwrpps1503068729.jpg"
+        ],
+        [
+          "Chicken",
+          "Kentucky Fried Chicken",
+          "United States",
+          "https://www.themealdb.com/images/media/meals/40r49m1763197022.jpg"
+        ],
+        [
+          "Chicken",
+          "Kung Pao Chicken",
+          "China",
+          "https://www.themealdb.com/images/media/meals/1525872624.jpg"
+        ],
+        [
+          "Chicken",
+          "Nom Banh Chok – Cambodian Noodle Soup",
+          "Cambodia",
+          "https://www.themealdb.com/images/media/meals/6g9gif1782688663.jpg"
+        ],
+        [
+          "Chicken",
+          "Num Pang – Cambodian Baguette Sandwich",
+          "Cambodia",
+          "https://www.themealdb.com/images/media/meals/o93jur1782769321.jpg"
+        ],
+        [
+          "Chicken",
+          "Nutty Chicken Curry",
+          "India",
+          "https://www.themealdb.com/images/media/meals/yxsurp1511304301.jpg"
+        ],
+        [
+          "Chicken",
+          "Pad See Ew",
+          "Thailand",
+          "https://www.themealdb.com/images/media/meals/uuuspp1468263334.jpg"
+        ],
+        [
+          "Chicken",
+          "Panang chicken curry (kaeng panang gai)",
+          "Thailand",
+          "https://www.themealdb.com/images/media/meals/0dhtwr1763371444.jpg"
+        ],
+        [
+          "Chicken",
+          "Pastel de Choclo",
+          "Chile",
+          "https://www.themealdb.com/images/media/meals/47abic1782854326.jpg"
+        ],
+        [
+          "Chicken",
+          "Piri-piri chicken and slaw",
+          "Portugal",
+          "https://www.themealdb.com/images/media/meals/hglsbl1614346998.jpg"
+        ],
+        [
+          "Chicken",
+          "Pollo en pepitoria",
+          "Spain",
+          "https://www.themealdb.com/images/media/meals/li30ck1763281992.jpg"
+        ],
+        [
+          "Chicken",
+          "Pollo en Salsa",
+          "Costa Rica",
+          "https://www.themealdb.com/images/media/meals/4o13oe1784396585.jpg"
+        ],
+        [
+          "Chicken",
+          "Potato Gratin with Chicken",
+          "Italy",
+          "https://www.themealdb.com/images/media/meals/qwrtut1468418027.jpg"
+        ],
+        [
+          "Chicken",
+          "Poulet Roti a l'Algerienne (Algerian Roast Chicken)",
+          "Algeria",
+          "https://www.themealdb.com/images/media/meals/nlxald1764112200.jpg"
+        ],
+        [
+          "Chicken",
+          "Rappie Pie",
+          "Canada",
+          "https://www.themealdb.com/images/media/meals/ruwpww1511817242.jpg"
+        ],
+        [
+          "Chicken",
+          "Red curry chicken kebabs",
+          "Thailand",
+          "https://www.themealdb.com/images/media/meals/prjve31763486864.jpg"
+        ],
+        [
+          "Chicken",
+          "Roasted chicken with creamy walnut sauce",
+          "Turkey",
+          "https://www.themealdb.com/images/media/meals/ro8mzj1763800655.jpg"
+        ],
+        [
+          "Chicken",
+          "Rosol (Polish Chicken Soup)",
+          "Poland",
+          "https://www.themealdb.com/images/media/meals/lx1kkj1593349302.jpg"
+        ],
+        [
+          "Chicken",
+          "Samlar Kari – Khmer Red Curry",
+          "Cambodia",
+          "https://www.themealdb.com/images/media/meals/k5qzdl1782689660.jpg"
+        ],
+        [
+          "Chicken",
+          "Samlar Machu Kreung – Cambodian Sour Stew",
+          "Cambodia",
+          "https://www.themealdb.com/images/media/meals/bmbvjk1782770310.jpg"
+        ],
+        [
+          "Chicken",
+          "Shawarma",
+          "Egypt",
+          "https://www.themealdb.com/images/media/meals/kcv6hj1598733479.jpg"
+        ],
+        [
+          "Chicken",
+          "Smoky chicken skewers",
+          "Turkey",
+          "https://www.themealdb.com/images/media/meals/3um6il1763794322.jpg"
+        ],
+        [
+          "Chicken",
+          "Spanish beans with chicken & chorizo",
+          "Spain",
+          "https://www.themealdb.com/images/media/meals/bpkxtw1763332446.jpg"
+        ],
+        [
+          "Chicken",
+          "Spanish Chicken",
+          "Spain",
+          "https://www.themealdb.com/images/media/meals/pqulvm1763282839.jpg"
+        ],
+        [
+          "Chicken",
+          "Spanish chicken pie",
+          "Spain",
+          "https://www.themealdb.com/images/media/meals/8ovxf41763253962.jpg"
+        ],
+        [
+          "Chicken",
+          "Spiced smoky barbecued chicken",
+          "Australia",
+          "https://www.themealdb.com/images/media/meals/a08uqk1761848682.jpg"
+        ],
+        [
+          "Chicken",
+          "Sticky Chicken",
+          "Australia",
+          "https://www.themealdb.com/images/media/meals/cj56fs1762340001.jpg"
+        ],
+        [
+          "Chicken",
+          "Stir-fried chicken with chillies & basil",
+          "Thailand",
+          "https://www.themealdb.com/images/media/meals/el64dy1763483009.jpg"
+        ],
+        [
+          "Chicken",
+          "Sweet and Sour Chicken",
+          "China",
+          "https://www.themealdb.com/images/media/meals/arzs741766434335.jpg"
+        ],
+        [
+          "Chicken",
+          "Tajine de Poulet aux Carottes et Patates Douces (Chicken and Sweet Potato Tagine)",
+          "Algeria",
+          "https://www.themealdb.com/images/media/meals/d8bfyg1764117503.jpg"
+        ],
+        [
+          "Chicken",
+          "Tandoori chicken",
+          "India",
+          "https://www.themealdb.com/images/media/meals/qptpvt1487339892.jpg"
+        ],
+        [
+          "Chicken",
+          "Teriyaki Chicken Casserole",
+          "Japan",
+          "https://www.themealdb.com/images/media/meals/wvpsxx1468256321.jpg"
+        ],
+        [
+          "Chicken",
+          "Thai chicken cakes with sweet chilli sauce",
+          "Thailand",
+          "https://www.themealdb.com/images/media/meals/6s3i3p1763488540.jpg"
+        ],
+        [
+          "Chicken",
+          "Thai drumsticks",
+          "Thailand",
+          "https://www.themealdb.com/images/media/meals/ittake1763586925.jpg"
+        ],
+        [
+          "Chicken",
+          "Thai green chicken soup",
+          "Thailand",
+          "https://www.themealdb.com/images/media/meals/7kb44y1763589084.jpg"
+        ],
+        [
+          "Chicken",
+          "Thai Green Curry",
+          "Thailand",
+          "https://www.themealdb.com/images/media/meals/sstssx1487349585.jpg"
+        ],
+        [
+          "Chicken",
+          "Tom kha gai",
+          "Thailand",
+          "https://www.themealdb.com/images/media/meals/ol2xxt1763582263.jpg"
+        ],
+        [
+          "Chicken",
+          "Venezuelan Coconut Chicken",
+          "Venezuela",
+          "https://www.themealdb.com/images/media/meals/z2sw3o1764378271.jpg"
+        ],
+        [
+          "Chicken",
+          "Vietnamese chicken salad",
+          "Vietnam",
+          "https://www.themealdb.com/images/media/meals/pk8wtn1763758591.jpg"
+        ],
+        [
+          "Pasta",
+          "Chilli prawn linguine",
+          "Italy",
+          "https://www.themealdb.com/images/media/meals/usywpp1511189717.jpg"
+        ],
+        [
+          "Pasta",
+          "Fettuccine Alfredo",
+          "Italy",
+          "https://www.themealdb.com/images/media/meals/0jv5gx1661040802.jpg"
+        ],
+        [
+          "Pasta",
+          "Fettucine alfredo",
+          "Italy",
+          "https://www.themealdb.com/images/media/meals/uquqtu1511178042.jpg"
+        ],
+        [
+          "Pasta",
+          "Grilled Mac and Cheese Sandwich",
+          "United States",
+          "https://www.themealdb.com/images/media/meals/xutquv1505330523.jpg"
+        ],
+        [
+          "Pasta",
+          "Lasagna Sandwiches",
+          "United States",
+          "https://www.themealdb.com/images/media/meals/xr0n4r1576788363.jpg"
+        ],
+        [
+          "Pasta",
+          "Lasagne",
+          "Italy",
+          "https://www.themealdb.com/images/media/meals/wtsvxx1511296896.jpg"
+        ],
+        [
+          "Pasta",
+          "Macaroni Pie",
+          "Barbados",
+          "https://www.themealdb.com/images/media/meals/kpiu4t1782242131.jpg"
+        ],
+        [
+          "Pasta",
+          "Macaroni Pudding",
+          "Cayman Islands",
+          "https://www.themealdb.com/images/media/meals/hbte551782770868.jpg"
+        ],
+        [
+          "Pasta",
+          "Pilchard puttanesca",
+          "Italy",
+          "https://www.themealdb.com/images/media/meals/vvtvtr1511180578.jpg"
+        ],
+        [
+          "Pasta",
+          "Spaghetti alla Carbonara",
+          "Italy",
+          "https://www.themealdb.com/images/media/meals/llcbn01574260722.jpg"
+        ],
+        [
+          "Pasta",
+          "Syrian Spaghetti",
+          "Syria",
+          "https://www.themealdb.com/images/media/meals/5fu4ew1760524857.jpg"
+        ],
+        [
+          "Pasta",
+          "Venetian Duck Ragu",
+          "Italy",
+          "https://www.themealdb.com/images/media/meals/qvrwpt1511181864.jpg"
+        ],
+        [
+          "Seafood",
+          "Acaraje black-eyed pea fritters with shrimp filling",
+          "Brazil",
+          "https://www.themealdb.com/images/media/meals/dxs5t71782678369.jpg"
+        ],
+        [
+          "Seafood",
+          "Amok Trey – Cambodian Fish Curry",
+          "Cambodia",
+          "https://www.themealdb.com/images/media/meals/diuub11782687570.jpg"
+        ],
+        [
+          "Seafood",
+          "Arroz con gambas y calamar",
+          "Spain",
+          "https://www.themealdb.com/images/media/meals/jc6oub1763196663.jpg"
+        ],
+        [
+          "Seafood",
+          "Bahia-style Moqueca prawn stew",
+          "Brazil",
+          "https://www.themealdb.com/images/media/meals/e2kcut1782591669.jpg"
+        ],
+        [
+          "Seafood",
+          "Baked salmon with fennel & tomatoes",
+          "United Kingdom",
+          "https://www.themealdb.com/images/media/meals/1548772327.jpg"
+        ],
+        [
+          "Seafood",
+          "Balchi di Pisca",
+          "Aruba",
+          "https://www.themealdb.com/images/media/meals/qqwhw51780093126.jpg"
+        ],
+        [
+          "Seafood",
+          "Bang bang prawn salad",
+          "Vietnam",
+          "https://www.themealdb.com/images/media/meals/4xcfai1763765676.jpg"
+        ],
+        [
+          "Seafood",
+          "Bangladeshi fish curry with daikon",
+          "Bangladesh",
+          "https://www.themealdb.com/images/media/meals/r7mcjm1780261264.jpg"
+        ],
+        [
+          "Seafood",
+          "Barramundi with Moroccan spices",
+          "Australia",
+          "https://www.themealdb.com/images/media/meals/4o4wh11761848573.jpg"
+        ],
+        [
+          "Seafood",
+          "Cajun spiced fish tacos",
+          "Mexico",
+          "https://www.themealdb.com/images/media/meals/uvuyxu1503067369.jpg"
+        ],
+        [
+          "Seafood",
+          "Camaro Grelhado Com Molho Cru (Grilled Prawns with Green Onion Sauce)",
+          "Angola",
+          "https://www.themealdb.com/images/media/meals/jg4r991779916649.jpg"
+        ],
+        [
+          "Seafood",
+          "Cayman-Style Lobster",
+          "Cayman Islands",
+          "https://www.themealdb.com/images/media/meals/wkhwqr1782774765.jpg"
+        ],
+        [
+          "Seafood",
+          "Clam, chorizo & white bean stew",
+          "Spain",
+          "https://www.themealdb.com/images/media/meals/92wbmf1763252334.jpg"
+        ],
+        [
+          "Seafood",
+          "Codfish deviled eggs",
+          "Dominica",
+          "https://www.themealdb.com/images/media/meals/vayi021784668764.jpg"
+        ],
+        [
+          "Seafood",
+          "Conch Fritters",
+          "Cayman Islands",
+          "https://www.themealdb.com/images/media/meals/nmtq3n1782772031.jpg"
+        ],
+        [
+          "Seafood",
+          "Conch Stew",
+          "Cayman Islands",
+          "https://www.themealdb.com/images/media/meals/mlkjeu1782775816.jpg"
+        ],
+        [
+          "Seafood",
+          "Crispy fried fish with ginger and fermented soybeans (trey chien chuon)",
+          "Cambodia",
+          "https://www.themealdb.com/images/media/meals/9q1ci41779735714.jpg"
+        ],
+        [
+          "Seafood",
+          "Egg Foo Young",
+          "China",
+          "https://www.themealdb.com/images/media/meals/47y6ii1765658818.jpg"
+        ],
+        [
+          "Seafood",
+          "Escovitch Fish",
+          "Jamaica",
+          "https://www.themealdb.com/images/media/meals/1520084413.jpg"
+        ],
+        [
+          "Seafood",
+          "Fish fofos",
+          "Portugal",
+          "https://www.themealdb.com/images/media/meals/a15wsa1614349126.jpg"
+        ],
+        [
+          "Seafood",
+          "Fish pie",
+          "United Kingdom",
+          "https://www.themealdb.com/images/media/meals/ysxwuq1487323065.jpg"
+        ],
+        [
+          "Seafood",
+          "Fish Soup (Ukha)",
+          "Russia",
+          "https://www.themealdb.com/images/media/meals/7n8su21699013057.jpg"
+        ],
+        [
+          "Seafood",
+          "Fish Stew with Rouille",
+          "France",
+          "https://www.themealdb.com/images/media/meals/vptqpw1511798500.jpg"
+        ],
+        [
+          "Seafood",
+          "Fiskesuppe (Creamy Norwegian Fish Soup)",
+          "Norway",
+          "https://www.themealdb.com/images/media/meals/raqjbj1762773035.jpg"
+        ],
+        [
+          "Seafood",
+          "Fried calamari",
+          "Spain",
+          "https://www.themealdb.com/images/media/meals/yhi46r1763330279.jpg"
+        ],
+        [
+          "Seafood",
+          "Fried Crab",
+          "Cayman Islands",
+          "https://www.themealdb.com/images/media/meals/rprcc51782774240.jpg"
+        ],
+        [
+          "Seafood",
+          "Gambas al ajillo",
+          "Spain",
+          "https://www.themealdb.com/images/media/meals/ze8uwg1763196123.jpg"
+        ],
+        [
+          "Seafood",
+          "Garides Saganaki",
+          "Greece",
+          "https://www.themealdb.com/images/media/meals/wuvryu1468232995.jpg"
+        ],
+        [
+          "Seafood",
+          "Garlicky prawns with sherry",
+          "Spain",
+          "https://www.themealdb.com/images/media/meals/u2lhqb1763331899.jpg"
+        ],
+        [
+          "Seafood",
+          "Grilled Portuguese sardines",
+          "Portugal",
+          "https://www.themealdb.com/images/media/meals/lpd4wy1614347943.jpg"
+        ],
+        [
+          "Seafood",
+          "Honey Teriyaki Salmon",
+          "Japan",
+          "https://www.themealdb.com/images/media/meals/xxyupu1468262513.jpg"
+        ],
+        [
+          "Seafood",
+          "Jamaican Curry Shrimp Recipe",
+          "Jamaica",
+          "https://www.themealdb.com/images/media/meals/n7h5zs1765318909.jpg"
+        ],
+        [
+          "Seafood",
+          "Jamaican Pepper Shrimp",
+          "Jamaica",
+          "https://www.themealdb.com/images/media/meals/bx07m71764792853.jpg"
+        ],
+        [
+          "Seafood",
+          "Kedgeree",
+          "United Kingdom",
+          "https://www.themealdb.com/images/media/meals/utxqpt1511639216.jpg"
+        ],
+        [
+          "Seafood",
+          "Kung Po Prawns",
+          "China",
+          "https://www.themealdb.com/images/media/meals/1525873040.jpg"
+        ],
+        [
+          "Seafood",
+          "Laksa King Prawn Noodles",
+          "Malaysia",
+          "https://www.themealdb.com/images/media/meals/rvypwy1503069308.jpg"
+        ],
+        [
+          "Seafood",
+          "Meang Nem",
+          "Cambodia",
+          "https://www.themealdb.com/images/media/meals/5rk8vc1779740302.jpg"
+        ],
+        [
+          "Seafood",
+          "Mediterranean Pasta Salad",
+          "Italy",
+          "https://www.themealdb.com/images/media/meals/wvqpwt1468339226.jpg"
+        ],
+        [
+          "Seafood",
+          "Mee goreng mamak",
+          "Malaysia",
+          "https://www.themealdb.com/images/media/meals/xquakq1619787532.jpg"
+        ],
+        [
+          "Seafood",
+          "Napa Cabbage with Dried Shrimp",
+          "China",
+          "https://www.themealdb.com/images/media/meals/9nh4dl1766435484.jpg"
+        ],
+        [
+          "Seafood",
+          "Nasi lemak",
+          "Malaysia",
+          "https://www.themealdb.com/images/media/meals/wai9bw1619788844.jpg"
+        ],
+        [
+          "Seafood",
+          "Noodle bowl salad",
+          "Vietnam",
+          "https://www.themealdb.com/images/media/meals/zry07j1763779321.jpg"
+        ],
+        [
+          "Seafood",
+          "Pad Thai",
+          "Thailand",
+          "https://www.themealdb.com/images/media/meals/rg9ze01763479093.jpg"
+        ],
+        [
+          "Seafood",
+          "Paella",
+          "Spain",
+          "https://www.themealdb.com/images/media/meals/9bl20p1763248192.jpg"
+        ],
+        [
+          "Seafood",
+          "Pan-fried hake, white bean & chorizo broth",
+          "Spain",
+          "https://www.themealdb.com/images/media/meals/4yjart1763248459.jpg"
+        ],
+        [
+          "Seafood",
+          "Portuguese fish stew (Caldeirada de peixe)",
+          "Portugal",
+          "https://www.themealdb.com/images/media/meals/do7zps1614349775.jpg"
+        ],
+        [
+          "Seafood",
+          "Prawn & noodle salad with crispy shallots",
+          "Vietnam",
+          "https://www.themealdb.com/images/media/meals/0iryz91763778419.jpg"
+        ],
+        [
+          "Seafood",
+          "Prawn stir-fry",
+          "Thailand",
+          "https://www.themealdb.com/images/media/meals/96lt871763480970.jpg"
+        ],
+        [
+          "Seafood",
+          "Prawns with Romesco sauce",
+          "Spain",
+          "https://www.themealdb.com/images/media/meals/u03xhi1763308917.jpg"
+        ],
+        [
+          "Seafood",
+          "Quick salt & pepper squid",
+          "Australia",
+          "https://www.themealdb.com/images/media/meals/cp74zo1762341241.jpg"
+        ],
+        [
+          "Seafood",
+          "Recheado Masala Fish",
+          "India",
+          "https://www.themealdb.com/images/media/meals/uwxusv1487344500.jpg"
+        ],
+        [
+          "Seafood",
+          "Salmon Avocado Salad",
+          "United Kingdom",
+          "https://www.themealdb.com/images/media/meals/1549542994.jpg"
+        ],
+        [
+          "Seafood",
+          "Salmon noodle soup",
+          "Vietnam",
+          "https://www.themealdb.com/images/media/meals/ikizdm1763760862.jpg"
+        ],
+        [
+          "Seafood",
+          "Salmon noodle wraps",
+          "Vietnam",
+          "https://www.themealdb.com/images/media/meals/prrirc1763781360.jpg"
+        ],
+        [
+          "Seafood",
+          "Salmon Prawn Risotto",
+          "Italy",
+          "https://www.themealdb.com/images/media/meals/xxrxux1503070723.jpg"
+        ],
+        [
+          "Seafood",
+          "Salt & pepper squid",
+          "Vietnam",
+          "https://www.themealdb.com/images/media/meals/yxiilf1763759428.jpg"
+        ],
+        [
+          "Seafood",
+          "Salt cod tortilla",
+          "Spain",
+          "https://www.themealdb.com/images/media/meals/njj1681763297231.jpg"
+        ],
+        [
+          "Seafood",
+          "Saltfish and Ackee",
+          "Jamaica",
+          "https://www.themealdb.com/images/media/meals/vytypy1511883765.jpg"
+        ],
+        [
+          "Seafood",
+          "Sauerkraut and Fish Salad",
+          "Estonia",
+          "https://www.themealdb.com/images/media/meals/2i0plx1784837241.jpg"
+        ],
+        [
+          "Seafood",
+          "Sea bass with sizzled ginger, chilli & spring onions",
+          "Vietnam",
+          "https://www.themealdb.com/images/media/meals/tqd7s21763780609.jpg"
+        ],
+        [
+          "Seafood",
+          "Seafood fideuà",
+          "Spain",
+          "https://www.themealdb.com/images/media/meals/wqqvyq1511179730.jpg"
+        ],
+        [
+          "Seafood",
+          "Seafood rice",
+          "Spain",
+          "https://www.themealdb.com/images/media/meals/5r5rvx1763287943.jpg"
+        ],
+        [
+          "Seafood",
+          "Shrimp Chow Fun",
+          "China",
+          "https://www.themealdb.com/images/media/meals/1529445434.jpg"
+        ],
+        [
+          "Seafood",
+          "Shrimp With Snow Peas",
+          "China",
+          "https://www.themealdb.com/images/media/meals/fpl3mv1766433431.jpg"
+        ],
+        [
+          "Seafood",
+          "Singapore Noodles with Shrimp",
+          "China",
+          "https://www.themealdb.com/images/media/meals/f3cxnc1765656994.jpg"
+        ],
+        [
+          "Seafood",
+          "Sledz w Oleju (Polish Herrings)",
+          "Poland",
+          "https://www.themealdb.com/images/media/meals/7ttta31593350374.jpg"
+        ],
+        [
+          "Seafood",
+          "Spanish rice & prawn one-pot",
+          "Spain",
+          "https://www.themealdb.com/images/media/meals/sl6vqv1763335988.jpg"
+        ],
+        [
+          "Seafood",
+          "Spanish seafood rice",
+          "Spain",
+          "https://www.themealdb.com/images/media/meals/c6ghxm1763335584.jpg"
+        ],
+        [
+          "Seafood",
+          "Spicy Thai prawn noodles",
+          "Thailand",
+          "https://www.themealdb.com/images/media/meals/568t931763584227.jpg"
+        ],
+        [
+          "Seafood",
+          "Spring onion and prawn empanadas",
+          "Portugal",
+          "https://www.themealdb.com/images/media/meals/1c5oso1614347493.jpg"
+        ],
+        [
+          "Seafood",
+          "Squid, chickpea & chorizo salad",
+          "Australia",
+          "https://www.themealdb.com/images/media/meals/wsu0rc1761848482.jpg"
+        ],
+        [
+          "Seafood",
+          "Sushi",
+          "Japan",
+          "https://www.themealdb.com/images/media/meals/g046bb1663960946.jpg"
+        ],
+        [
+          "Seafood",
+          "Thai curry noodle soup",
+          "Thailand",
+          "https://www.themealdb.com/images/media/meals/118oj61763423896.jpg"
+        ],
+        [
+          "Seafood",
+          "Thai fried rice with prawns & peas",
+          "Thailand",
+          "https://www.themealdb.com/images/media/meals/hblwvg1763478203.jpg"
+        ],
+        [
+          "Seafood",
+          "Thai prawn curry",
+          "Thailand",
+          "https://www.themealdb.com/images/media/meals/qqlwv91763501559.jpg"
+        ],
+        [
+          "Seafood",
+          "Thai-style fish broth with greens",
+          "Thailand",
+          "https://www.themealdb.com/images/media/meals/a2ec961763587756.jpg"
+        ],
+        [
+          "Seafood",
+          "Thai-style steamed fish",
+          "Thailand",
+          "https://www.themealdb.com/images/media/meals/yx8j1i1763484612.jpg"
+        ],
+        [
+          "Seafood",
+          "Three Fish Pie",
+          "United Kingdom",
+          "https://www.themealdb.com/images/media/meals/spswqs1511558697.jpg"
+        ],
+        [
+          "Seafood",
+          "Tom yum (hot & sour) soup with prawns",
+          "Thailand",
+          "https://www.themealdb.com/images/media/meals/9c5nlx1763424766.jpg"
+        ],
+        [
+          "Seafood",
+          "Tom yum soup with prawns",
+          "Thailand",
+          "https://www.themealdb.com/images/media/meals/l50vz41763422681.jpg"
+        ],
+        [
+          "Seafood",
+          "Tuna and Egg Briks",
+          "Tunisia",
+          "https://www.themealdb.com/images/media/meals/2dsltq1560461468.jpg"
+        ],
+        [
+          "Seafood",
+          "Tuna Nicoise",
+          "France",
+          "https://www.themealdb.com/images/media/meals/yypwwq1511304979.jpg"
+        ],
+        [
+          "Seafood",
+          "Vietnamese caramel trout",
+          "Vietnam",
+          "https://www.themealdb.com/images/media/meals/p02vq41763754350.jpg"
+        ],
+        [
+          "Seafood",
+          "Vietnamese prawn spiralized rolls",
+          "Vietnam",
+          "https://www.themealdb.com/images/media/meals/9r2xrg1763771238.jpg"
+        ]
+      ]
+    },
+    "Q02": {
+      "columns": [
+        "meal_id",
+        "name",
+        "image_url",
+        "other_ingredients"
+      ],
+      "rows": [
+        [
+          "53404",
+          "Tavë Kosi Baked Lamb and Yogurt",
+          "https://www.themealdb.com/images/media/meals/a1mi7t1779643816.jpg",
+          9
+        ],
+        [
+          "53051",
+          "Nasi lemak",
+          "https://www.themealdb.com/images/media/meals/wai9bw1619788844.jpg",
+          14
+        ]
+      ]
+    },
+    "Q03": {
+      "columns": [
+        "slot_number",
+        "ingredient",
+        "measure"
+      ],
+      "rows": [
+        [
+          1,
+          "Black Eyed Peas",
+          "800g"
+        ],
+        [
+          3,
+          "Green Chilli",
+          "1"
+        ],
+        [
+          4,
+          "red onions",
+          "1 small finely diced"
+        ],
+        [
+          5,
+          "plain flour",
+          "2 tablespoons"
+        ],
+        [
+          7,
+          "Chilli powder",
+          "1 tsp"
+        ],
+        [
+          8,
+          "baking powder",
+          "1 tsp"
+        ],
+        [
+          9,
+          "Vegetable oil",
+          "For frying"
+        ],
+        [
+          10,
+          "red onions",
+          "1 sliced"
+        ],
+        [
+          11,
+          "ginger",
+          "1 tablespoon chopped"
+        ],
+        [
+          13,
+          "Red Chilli",
+          "1 chopped"
+        ],
+        [
+          14,
+          "Raw tiger prawns",
+          "150g"
+        ],
+        [
+          15,
+          "Vegetable oil",
+          "1 tablespoon"
+        ],
+        [
+          16,
+          "Plum tomatoes",
+          "2"
+        ],
+        [
+          17,
+          "coriander",
+          "1 tablespoon chopped"
+        ],
+        [
+          18,
+          "lime",
+          "Juice of 1"
+        ]
+      ]
+    },
+    "Q04": {
+      "columns": [
+        "meal_id",
+        "name",
+        "missing_measures",
+        "ingredients_to_check"
+      ],
+      "rows": [
+        [
+          "52995",
+          "BBQ Pork Sloppy Joes",
+          7,
+          "Barbeque Sauce, Hotsauce, Tomato Ketchup, sugar, Vegetable oil, salt, pepper"
+        ],
+        [
+          "52996",
+          "French Onion Chicken with Roasted Carrots & Mashed Potatoes",
+          5,
+          "butter, sugar, Vegetable oil, salt, pepper"
+        ],
+        [
+          "53000",
+          "Vegetable Shepherds Pie",
+          5,
+          "Bay Leaves, Olive oil, Parsley, sage, Chives"
+        ],
+        [
+          "52957",
+          "Fruit and Cream Cheese Breakfast Pastries",
+          4,
+          "flour, strawberries, Raspberries, Blackberries"
+        ],
+        [
+          "52993",
+          "Honey Balsamic Chicken with Crispy Broccoli & Potatoes",
+          3,
+          "Balsamic Vinegar, Honey, Chicken Stock"
+        ],
+        [
+          "52999",
+          "Crispy Sausages and Greens",
+          2,
+          "salt, pepper"
+        ],
+        [
+          "53138",
+          "Alfajores",
+          1,
+          "Dulce de leche"
+        ],
+        [
+          "53580",
+          "Biss Jaggery Modak",
+          1,
+          "Dried Fruit"
+        ],
+        [
+          "53064",
+          "Fettuccine Alfredo",
+          1,
+          "black pepper"
+        ],
+        [
+          "52809",
+          "Recheado Masala Fish",
+          1,
+          "cinnamon stick"
+        ]
+      ]
+    },
+    "Q05": {
+      "columns": [
+        "meal_id",
+        "name",
+        "category",
+        "source_modified_at",
+        "image_url"
+      ],
+      "rows": [
+        [
+          "53565",
+          "Chicken Lollipop",
+          "Chicken",
+          "2026-07-21 23:06:43",
+          "https://www.themealdb.com/images/media/meals/nz0lg71784671684.jpg"
+        ],
+        [
+          "53557",
+          "Extra crispy chicken wings",
+          "Chicken",
+          "2026-07-21 21:25:57",
+          "https://www.themealdb.com/images/media/meals/feh9k21784665694.jpg"
+        ],
+        [
+          "53549",
+          "Chicken Salad With Mushrooms and Bacon",
+          "Chicken",
+          "2026-07-21 19:50:00",
+          "https://www.themealdb.com/images/media/meals/t5rgav1784659936.jpg"
+        ],
+        [
+          "53540",
+          "Pollo en Salsa",
+          "Chicken",
+          "2026-07-18 18:41:31",
+          "https://www.themealdb.com/images/media/meals/4o13oe1784396585.jpg"
+        ],
+        [
+          "53531",
+          "Chicken in Orange Sauce Recipe (Pollo a la Naranja)",
+          "Chicken",
+          "2026-07-11 22:05:24",
+          "https://www.themealdb.com/images/media/meals/uuns781783804024.jpg"
+        ],
+        [
+          "53530",
+          "Creamy Mustard Chicken",
+          "Chicken",
+          "2026-07-11 21:57:33",
+          "https://www.themealdb.com/images/media/meals/4htbtm1783803558.jpg"
+        ],
+        [
+          "53520",
+          "Pastel de Choclo",
+          "Chicken",
+          "2026-06-30 22:17:20",
+          "https://www.themealdb.com/images/media/meals/47abic1782854326.jpg"
+        ],
+        [
+          "53504",
+          "Macaroni Pudding",
+          "Pasta",
+          "2026-06-29 23:06:13",
+          "https://www.themealdb.com/images/media/meals/hbte551782770868.jpg"
+        ],
+        [
+          "53503",
+          "Samlar Machu Kreung – Cambodian Sour Stew",
+          "Chicken",
+          "2026-06-29 22:56:58",
+          "https://www.themealdb.com/images/media/meals/bmbvjk1782770310.jpg"
+        ],
+        [
+          "53501",
+          "Num Pang – Cambodian Baguette Sandwich",
+          "Chicken",
+          "2026-06-29 22:40:03",
+          "https://www.themealdb.com/images/media/meals/o93jur1782769321.jpg"
+        ],
+        [
+          "53498",
+          "Samlar Kari – Khmer Red Curry",
+          "Chicken",
+          "2026-06-29 00:32:36",
+          "https://www.themealdb.com/images/media/meals/k5qzdl1782689660.jpg"
+        ],
+        [
+          "53497",
+          "Nom Banh Chok – Cambodian Noodle Soup",
+          "Chicken",
+          "2026-06-29 00:15:58",
+          "https://www.themealdb.com/images/media/meals/6g9gif1782688663.jpg"
+        ],
+        [
+          "53466",
+          "Belgian Waterzooi Chicken",
+          "Chicken",
+          "2026-06-26 19:28:54",
+          "https://www.themealdb.com/images/media/meals/nmxec11782498644.jpg"
+        ],
+        [
+          "53461",
+          "Macaroni Pie",
+          "Pasta",
+          "2026-06-23 20:13:10",
+          "https://www.themealdb.com/images/media/meals/kpiu4t1782242131.jpg"
+        ],
+        [
+          "53459",
+          "Chicken and Potato Roti",
+          "Chicken",
+          "2026-06-23 19:06:18",
+          "https://www.themealdb.com/images/media/meals/mp9z0i1782238092.jpg"
+        ],
+        [
+          "53455",
+          "Chicken Liver Pate Recipe",
+          "Chicken",
+          "2026-05-31 22:49:17",
+          "https://www.themealdb.com/images/media/meals/hob03q1780264260.jpg"
+        ],
+        [
+          "53453",
+          "Bengali Chicken Curry with Potatoes",
+          "Chicken",
+          "2026-05-31 22:21:39",
+          "https://www.themealdb.com/images/media/meals/9ya6o71780262651.jpg"
+        ]
+      ]
+    },
+    "Q06": {
+      "columns": [
+        "meal_id",
+        "name",
+        "category",
+        "image_url"
+      ],
+      "rows": [
+        [
+          "53495",
+          "Amok Trey – Cambodian Fish Curry",
+          "Seafood",
+          "https://www.themealdb.com/images/media/meals/diuub11782687570.jpg"
+        ],
+        [
+          "53496",
+          "Bai Sach Chrouk – Grilled Pork with Rice",
+          "Pork",
+          "https://www.themealdb.com/images/media/meals/f0cdwk1782688162.jpg"
+        ],
+        [
+          "53421",
+          "BEEF LOK LAK (Lok Lak Sach Ko)",
+          "Beef",
+          "https://www.themealdb.com/images/media/meals/t2b8bn1779737789.jpg"
+        ],
+        [
+          "53418",
+          "Cambodian Stir-fried Morning Glory with Pork, Fermented Soybeans, and Garlic",
+          "Pork",
+          "https://www.themealdb.com/images/media/meals/wympxc1779734808.jpg"
+        ],
+        [
+          "53420",
+          "Cambodian Waffles (Num Poum)",
+          "Dessert",
+          "https://www.themealdb.com/images/media/meals/h7zrys1779736460.jpg"
+        ]
+      ]
+    },
+    "Q07": {
+      "columns": [
+        "meal_id",
+        "name",
+        "ingredient_count"
+      ],
+      "rows": [
+        [
+          "53360",
+          "Caribbean Tamarind balls",
+          2
+        ],
+        [
+          "53580",
+          "Biss Jaggery Modak",
+          3
+        ],
+        [
+          "53579",
+          "Honey Cookies",
+          3
+        ],
+        [
+          "53424",
+          "Laos Plantain Coconut Bake (Flourless Muffin)",
+          3
+        ],
+        [
+          "52958",
+          "Peanut Butter Cookies",
+          3
+        ]
+      ]
+    },
+    "Q08": {
+      "columns": [
+        "name",
+        "recipe_count"
+      ],
+      "rows": [
+        [
+          "salt",
+          302
+        ],
+        [
+          "garlic",
+          237
+        ],
+        [
+          "onion",
+          223
+        ],
+        [
+          "Olive oil",
+          190
+        ],
+        [
+          "butter",
+          177
+        ]
+      ]
+    },
+    "Q09": {
+      "columns": [
+        "meal_id",
+        "name",
+        "image_url"
+      ],
+      "rows": [
+        [
+          "52870",
+          "Chickpea Fajitas",
+          "https://www.themealdb.com/images/media/meals/tvtxpq1511464705.jpg"
+        ],
+        [
+          "53266",
+          "Falafel",
+          "https://www.themealdb.com/images/media/meals/u5e9qq1763795441.jpg"
+        ],
+        [
+          "53255",
+          "Grilled aubergines with spicy chickpeas & walnut sauce",
+          "https://www.themealdb.com/images/media/meals/ctw3ba1763788978.jpg"
+        ],
+        [
+          "53027",
+          "Koshari",
+          "https://www.themealdb.com/images/media/meals/4er7mj1598733193.jpg"
+        ],
+        [
+          "52973",
+          "Leblebi Soup",
+          "https://www.themealdb.com/images/media/meals/x2fw9e1560460636.jpg"
+        ]
+      ]
+    },
+    "Q10": {
+      "columns": [
+        "country",
+        "recipe_count"
+      ],
+      "rows": [
+        [
+          "Italy",
+          7
+        ],
+        [
+          "Spain",
+          0
+        ]
+      ]
+    },
+    "Q11": {
+      "columns": [
+        "meal_id",
+        "name",
+        "slot_number",
+        "ingredient",
+        "measure"
+      ],
+      "rows": [
+        [
+          "52982",
+          "Spaghetti alla Carbonara",
+          1,
+          "spaghetti",
+          "320g"
+        ],
+        [
+          "52982",
+          "Spaghetti alla Carbonara",
+          2,
+          "Egg Yolks",
+          "6"
+        ],
+        [
+          "52982",
+          "Spaghetti alla Carbonara",
+          3,
+          "salt",
+          "As required"
+        ],
+        [
+          "52982",
+          "Spaghetti alla Carbonara",
+          4,
+          "Bacon",
+          "150g"
+        ],
+        [
+          "52982",
+          "Spaghetti alla Carbonara",
+          5,
+          "pecorino",
+          "50g"
+        ],
+        [
+          "52982",
+          "Spaghetti alla Carbonara",
+          6,
+          "black pepper",
+          "As required"
+        ]
+      ]
+    },
+    "Q12": {
+      "columns": [
+        "last_success",
+        "recipes_added",
+        "recipes_updated"
+      ],
+      "rows": [
+        [
+          "2026-11-19 20:17:47.603954+00:00",
+          0,
+          0
+        ]
+      ]
+    }
+  }
+}
