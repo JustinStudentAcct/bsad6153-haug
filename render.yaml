@@ -13,7 +13,7 @@ services:
       - key: PYTHON_VERSION
         value: "3.12.4"
       - key: FRESHNESS_HOURS
-        value: "24"
+        value: "192"
       - key: APP_DATABASE_URL
         sync: false
       - key: ANTHROPIC_API_KEY

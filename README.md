@@ -128,17 +128,22 @@ See the [schema diagram](docs/schema.md), [business queries](db/queries.sql), an
 
 ### Scheduled recipe sync (Milestone 3)
 
-The [Recipe sync workflow](.github/workflows/sync.yml) runs every six hours during
-the assignment to allow time to collect at least three scheduled runs. It runs
-at 01:17, 07:17, 13:17, and 19:17 UTC, away from the top of the hour. Each scan
-makes 26 paced TheMealDB requests, for 104 requests per day before retries.
-After the assignment, I'm expecting to change the  schedule to daily or less often based
-on how infrequently the source changes.
+The [Recipe sync workflow](.github/workflows/sync.yml) runs once a week on
+Sundays at 01:17 UTC. Each scheduled scan makes 26 paced TheMealDB requests,
+one for each letter, before retries. The Milestone 3 evidence was collected
+on a six-hour schedule.
+
+The app warns when the last successful sync is more than eight days old,
+allowing one day for delays after the weekly run is due. The app caches
+catalog queries and the freshness lookup with a 10-minute `st.cache_data`
+TTL, which is shorter than the weekly sync interval. A longer TTL would keep
+old results visible longer after a sync. A shorter TTL would send more
+repeated queries to Supabase as people browse.
 
 Set `DATABASE_URL` in the repository's Actions secrets to the Supabase owner
 Session pooler connection string. Once the workflow is on `main`, select
 **Actions → Recipe sync → Run workflow** to verify it. The manual run is logged
-in `sync_runs` with `trigger = 'manual'`. The three assignment runs are logged
+in `sync_runs` with `trigger = 'manual'`. The Milestone 3 scheduled runs are logged
 with `trigger = 'schedule'`.
 
 <!-- Keep this current: how to run the sync, the website, and the evaluations. -->

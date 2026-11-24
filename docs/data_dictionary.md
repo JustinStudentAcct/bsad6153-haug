@@ -40,7 +40,7 @@ The source identifies a meal by `idMeal`. PostgreSQL stores it as the unique `re
 
 ## Freshness
 
-The assignment schedule runs every six hours. If TheMealDB exposes an edit just after its letter was fetched and the next run succeeds, the edit normally arrives within roughly six hours plus GitHub queue time and sync runtime. There is no guaranteed maximum age. GitHub can delay or miss a run, Supabase can pause, and API or database failures can block refreshes until a successful run. Source publication lag is outside the pipeline's control. The sync also retains meals that disappear from the source, so their stored contents can persist indefinitely. Use the last successful `sync_runs.finished_at` to measure pipeline freshness.
+The Milestone 3 tests used a six-hour schedule. The current schedule runs weekly. If TheMealDB exposes an edit just after its letter was fetched and the next run succeeds, the edit normally arrives within roughly one week plus GitHub queue time and sync runtime. There is no guaranteed maximum age. GitHub can delay or miss a run, Supabase can pause, and API or database failures can block refreshes until a successful run. Source publication lag is outside the pipeline's control. The sync also retains meals that disappear from the source, so their stored contents can persist indefinitely. Use the last successful `sync_runs.finished_at` to measure pipeline freshness.
 
 ## Milestone 3 change log
 
