@@ -7,8 +7,8 @@ visitor should understand that this course demo finds dinner ideas in the
 synced TheMealDB catalog and builds a shopping checklist for one recipe.
 
 1. **Browse (Q01).** What chicken, pasta, or seafood dinners can I browse with
-   photos? Filter by category. Show available, permitted photos and keep
-   recipes selectable without one.
+   photos? Search by partial recipe name or filter by category. Show available,
+   permitted photos and keep recipes selectable without one.
 2. **Pantry (Q02).** If I have eggs, rice, and garlic, which recipes use all
    three and need the fewest other ingredients? Require every selected
    ingredient and rank by the count of other distinct ingredient names.
@@ -30,12 +30,14 @@ designated private by the [Milestone 1 ethics check](data_dictionary.md#data-use
 
 ## Done when
 
-- A banner at the top shows the latest successful `sync_runs.finished_at`
-  and its age. Warn visibly after eight days or if no sync has succeeded.
-  This allows one day for delays after the weekly sync is due.
+- Show the latest successful `sync_runs.finished_at` and its age. Warn after
+  eight days or if no sync has succeeded. The rubric calls for a banner at
+  the top. The implemented app places this status in the footer at the
+  project owner's request.
 - Browse and Pantry answer Q01 and Q02 using the Milestone 2 queries.
-  Changing a selection changes the parameterized query. A recipe opened
-  from either view supports the Q03 checklist.
+  Changing a selection changes the parameterized query. Both ends of a
+  results list offer synced page pickers. A recipe opened from either view
+  supports the Q03 checklist.
 - Empty results and database failures show distinct, plain messages.
   Users can clear their filters or retry after a database error.
 - Use `st.cache_data(ttl=600)` for database reads. Explain in the README

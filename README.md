@@ -2,12 +2,12 @@
 
 **Student:** Justin Haug
 **My decision:** I want to decide what meals to prepare based on my preferences and available ingredients, and what ingredients I need to buy.
-**Website:** &lt;your domain, from Week 4&gt;
+**Website:** The Week 4 app has been verified locally. A Render URL has yet to
+be recorded.
 
-The planned web app will help users discover recipes, choose meals, and build an ingredient shopping
-list. Users will be able to exclude ingredients they already have from the shopping list. Grocery
-product and pricing integration is a future goal; its API access and data-use permissions still need
-to be confirmed.
+The Week 4 web app helps users discover recipes, choose a meal, and build
+a shopping checklist that omits ingredients they already have. Grocery
+product and pricing integration remains a future goal.
 
 The current recipe source is [TheMealDB](https://www.themealdb.com/). As of October 30, 2026, the project
 has retrieved 790 unique recipes through first-letter searches from `a` through `z`. Raw API responses
@@ -39,7 +39,23 @@ every command before you approve it, and keep auto-approve off.
 3. **Install the packages:** `pip install -r requirements.txt`
 4. **Create your secrets file:** copy `.env.example` to `.env`, and put a fake value on the `TEST_SECRET=` line.
 5. **Check everything:** `python scripts/check_setup.py` should end with `Setup OK`.
-6. **Try the website:** `streamlit run app/streamlit_app.py` opens it in your browser. Press Ctrl+C to stop it.
+6. **Try the website:** Set `APP_DATABASE_URL` in `.env` to the Supabase
+   Session pooler connection string for `app_reader`. From the repository
+   root, run `streamlit run app/streamlit_app.py`. Press Ctrl+C to stop it.
+
+### Using the Week 4 app
+
+- **Browse** by partial recipe name, category, or both. For example, type
+  `carbonara` and press Enter. Use either page picker to move through results.
+- **Pantry** finds recipes that contain every selected ingredient. The
+  results are ranked by the fewest additional distinct ingredients.
+- **View recipe** shows the photo, ingredients, measures, and instructions.
+  Mark what you already have to update the shopping checklist. Those
+  selections stay in the current session.
+
+The footer shows the last successful catalog sync and credits TheMealDB
+for recipes and photos. See the [Week 4 verification notes](docs/app_verification.md)
+for the cases checked against Supabase.
 
 ### Working with your AI agent
 
@@ -150,7 +166,7 @@ with `trigger = 'schedule'`.
 
 ## Credits
 
-Recipe data: [TheMealDB](https://www.themealdb.com/). See its
+Recipes and photos: [TheMealDB](https://www.themealdb.com/). See its
 [API documentation](https://www.themealdb.com/documentation) and
 [terms of use](https://www.themealdb.com/terms_of_use.php). Recipe records retain their original source
 links where provided.
