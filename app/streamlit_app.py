@@ -5,6 +5,7 @@ Run with streamlit run app/streamlit_app.py.
 
 import os
 from datetime import datetime, timezone
+from string import punctuation
 from urllib.parse import urlsplit
 
 import psycopg
@@ -15,6 +16,7 @@ load_dotenv()
 
 CACHE_SECONDS = 600
 PAGE_SIZE = 10
+MARKDOWN_ESCAPES = str.maketrans({char: "\\" + char for char in punctuation})
 # One day of leeway after the weekly sync is due.
 DEFAULT_FRESHNESS_HOURS = 192
 
@@ -255,10 +257,6 @@ def _show_results(recipes, pantry_keys=()):
         _page_picker(page_count, "result_page_bottom", "result_page")
 
 
-def _save_checklist(meal_id):
-    st.session_state.setdefault("checklists", {})[meal_id] = st.session_state["checklist_widget"]
-
-
 def _recipe_detail(meal_id):
     st.button("Back to results", on_click=_close_recipe)
     recipes = _read_catalog(
@@ -290,10 +288,7 @@ def _recipe_detail(meal_id):
     if _web_url(source_url):
         st.link_button("Original recipe", source_url)
 
-    st.subheader("Ingredients")
     if slots:
-        for _, ingredient, measure in slots:
-            st.text(f"{ingredient} · {measure or 'Quantity needs review'}")
         _shopping_checklist(meal_id, slots)
     else:
         st.info("The source has no ingredient list for this recipe.")
@@ -302,25 +297,56 @@ def _recipe_detail(meal_id):
         st.text(instructions, width="stretch", wrap=True)
 
 
-def _shopping_checklist(meal_id, slots):
-    st.subheader("Shopping checklist")
-    ingredient_labels = {key: name for key, name, _ in slots}
-    saved = st.session_state.get("checklists", {}).get(meal_id, st.session_state["recipe_pantry"])
-    st.session_state.setdefault("checklist_widget", [key for key in saved if key in ingredient_labels])
-    on_hand = st.multiselect(
-        "Mark the ingredients you already have",
-        list(ingredient_labels),
-        format_func=ingredient_labels.__getitem__,
-        key="checklist_widget",
-        on_change=_save_checklist,
-        args=(meal_id,),
-    )
-    remaining = [(name, measure) for key, name, measure in slots if key not in on_hand]
-    if remaining:
-        for name, measure in remaining:
-            st.text(f"{name} · {measure or 'Quantity needs review'}")
+def _set_ingredient_on_hand(meal_id, widget_key, ingredient_key, initial_selection):
+    checklists = st.session_state.setdefault("checklists", {})
+    on_hand = set(checklists.get(meal_id, initial_selection))
+    if st.session_state[widget_key]:
+        on_hand.add(ingredient_key)
     else:
-        st.info("All listed ingredients are marked as on hand.")
+        on_hand.discard(ingredient_key)
+    checklists[meal_id] = on_hand
+
+
+def _checklist_row(meal_id, ingredient_key, name, measures, on_hand):
+    # Recipe text is data. Only the emphasis and line breaks added here are formatting.
+    measure_text = "  \n".join(measure.translate(MARKDOWN_ESCAPES) for measure in measures)
+    widget_key = f"ingredient_{meal_id}_{ingredient_key}"
+    st.checkbox(
+        f"**{name.translate(MARKDOWN_ESCAPES)}** · {measure_text}",
+        value=ingredient_key in on_hand,
+        key=widget_key,
+        width="stretch",
+        on_change=_set_ingredient_on_hand,
+        args=(meal_id, widget_key, ingredient_key, on_hand),
+    )
+
+
+def _shopping_checklist(meal_id, slots):
+    ingredients = {}
+    for key, name, measure in slots:
+        _, measures = ingredients.setdefault(key, (name, []))
+        measures.append(measure or "Quantity needs review")
+
+    saved = st.session_state.get("checklists", {}).get(meal_id, st.session_state["recipe_pantry"])
+    on_hand = set(saved) & ingredients.keys()
+    remaining = [key for key in ingredients if key not in on_hand]
+    stocked = sorted(on_hand, key=lambda key: (ingredients[key][0].casefold(), key))
+
+    with st.container(key="shopping_checklist"):
+        st.subheader("Shopping checklist")
+        st.caption("Check what you already have. Uncheck an item to put it back on the list.")
+        with st.expander("To buy", expanded=True):
+            for key in remaining:
+                _checklist_row(meal_id, key, *ingredients[key], on_hand)
+            if not remaining:
+                st.caption("Everything is on hand.")
+
+        with st.container(key="checklist_on_hand", gap="xsmall"):
+            st.markdown("**On hand**")
+            for key in stocked:
+                _checklist_row(meal_id, key, *ingredients[key], on_hand)
+            if not stocked:
+                st.caption("Nothing marked on hand yet.")
 
 
 def main():
@@ -332,9 +358,29 @@ def main():
         .st-key-browse_filters [data-testid="stHorizontalBlock"] { flex-wrap: nowrap; }
         .st-key-browse_filters [data-testid="stColumn"] { flex: 1 1 0; min-width: 0; }
         [class*="st-key-recipe_preview_"] h3 { padding-top: 0; }
+        .st-key-checklist_on_hand {
+            background: color-mix(in srgb, currentColor 6%, transparent);
+            border-radius: .5rem;
+            padding: .75rem;
+        }
+        .st-key-shopping_checklist [data-testid="stCheckbox"] label {
+            width: 100%;
+            box-sizing: border-box;
+            min-height: 2.75rem;
+            padding: .5rem .65rem;
+            border-radius: .375rem;
+            cursor: pointer;
+        }
+        .st-key-shopping_checklist [data-testid="stCheckbox"] label:hover {
+            background: color-mix(in srgb, currentColor 6%, transparent);
+        }
+        .st-key-shopping_checklist [data-testid="stCheckbox"] label:focus-within {
+            outline: 2px solid currentColor;
+            outline-offset: -2px;
+        }
         [data-testid="stAlert"] { filter: grayscale(1); }
         .st-key-mode, .st-key-recipe_search_widget, .st-key-category_widget, .st-key-pantry_widget,
-        .st-key-checklist_widget, [data-testid="stButton"],
+        .st-key-shopping_checklist [data-testid="stCheckbox"], [data-testid="stButton"],
         [data-testid="stLinkButton"], [data-testid="stNumberInput"] { filter: grayscale(1); }
         </style>
         """
