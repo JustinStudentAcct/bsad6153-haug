@@ -2,7 +2,7 @@ name: Recipe sync
 
 on:
   schedule:
-    - cron: '17 1,7,13,19 * * *'
+    - cron: '17 1 * * 0' # Sundays at 01:17 UTC
   workflow_dispatch:
 
 permissions:

@@ -2,12 +2,11 @@
 
 **Student:** Justin Haug
 **My decision:** I want to decide what meals to prepare based on my preferences and available ingredients, and what ingredients I need to buy.
-**Website:** &lt;your domain, from Week 4&gt;
+**Website:** [Meal Ideas on Render](https://bsad6153-haug.onrender.com/)
 
-The planned web app will help users discover recipes, choose meals, and build an ingredient shopping
-list. Users will be able to exclude ingredients they already have from the shopping list. Grocery
-product and pricing integration is a future goal; its API access and data-use permissions still need
-to be confirmed.
+The Week 4 web app helps users discover recipes, choose a meal, and build
+a shopping checklist that omits ingredients they already have. Grocery
+product and pricing integration remains a future goal.
 
 The current recipe source is [TheMealDB](https://www.themealdb.com/). As of October 30, 2026, the project
 has retrieved 790 unique recipes through first-letter searches from `a` through `z`. Raw API responses
@@ -20,7 +19,7 @@ own data. You build it with an AI coding agent, and you read and verify everythi
 
 ---
 
-## Setting up your computer (Week 1 Setup)
+## Run Meal Ideas locally
 
 You need a **Windows 10/11 or macOS computer where you can install software**, Git, Python 3.12, and your AI
 coding agent (Claude Code, Codex, Antigravity, or Copilot). Let your agent help with the installs, but read
@@ -37,9 +36,34 @@ every command before you approve it, and keep auto-approve off.
 
    You'll see `(.venv)` at the start of your prompt when it's active. Activate it every time you open a new terminal.
 3. **Install the packages:** `pip install -r requirements.txt`
-4. **Create your secrets file:** copy `.env.example` to `.env`, and put a fake value on the `TEST_SECRET=` line.
-5. **Check everything:** `python scripts/check_setup.py` should end with `Setup OK`.
-6. **Try the website:** `streamlit run app/streamlit_app.py` opens it in your browser. Press Ctrl+C to stop it.
+4. **Configure the database.** Copy `.env.example` to `.env` if you haven't
+   created it yet. Set `APP_DATABASE_URL` to the Supabase Session pooler
+   connection string for `app_reader`.
+5. **Start the app** from the repository root:
+
+   ```bash
+   streamlit run app/streamlit_app.py
+   ```
+
+   Open the local URL printed in the terminal. Press Ctrl+C to stop the app.
+
+To verify your setup, run `python scripts/check_setup.py` from the
+repository root. It should end with `Setup OK`.
+
+### Using the Week 4 app
+
+- **Browse** by partial recipe name, category, or both. For example, type
+  `carbonara` and press Enter. Use either page picker to move through results.
+- **Pantry** finds recipes that contain every selected ingredient. The
+  results are ranked by the fewest additional distinct ingredients.
+- Select any recipe card to see its photo, shopping checklist, and cooking
+  instructions. Mark what you already have to move it from **To buy** to
+  **On hand**. Those selections stay in the current session.
+
+The top toolbar shows the last successful catalog sync and its age to the left
+of the three-dot menu. The footer credits TheMealDB for recipes and photos. See the
+[Week 4 verification notes](docs/app_verification.md) for the checks against
+Supabase.
 
 ### Working with your AI agent
 
@@ -80,6 +104,9 @@ every command before you approve it, and keep auto-approve off.
 
 ## Deploying on Render (Week 4)
 
+Deploy from the repository’s `main` branch as a **Web Service** on Render’s
+**Free** instance type.
+
 1. Claim your free domain through the GitHub Student Developer Pack.
 2. In Render, choose **New &gt; Blueprint**, pick this repository, and enter each secret when asked.
    (`render.yaml` describes the service.) Or create a **Web Service** by hand with:
@@ -88,7 +115,11 @@ every command before you approve it, and keep auto-approve off.
    - Environment variables: `PYTHON_VERSION=3.12.4`, `APP_DATABASE_URL`, and later your LLM key and `APP_PASSWORD`
 3. Under **Settings &gt; Custom Domains**, add your domain, then add the DNS records Render shows you at your
    registrar. Ask your agent to explain each record before you add it. HTTPS turns on automatically.
-4. Free services sleep when idle and take about a minute to wake. Say so on your site.
+
+Render’s Free web services sleep after 15 minutes without incoming traffic.
+The next visit wakes the service and may show Render’s loading page for
+about a minute before Meal Ideas opens. The app footer includes this
+wake-up note. [Render’s Free web service documentation](https://render.com/docs/free#spinning-down-on-idle)
 
 ---
 
@@ -128,24 +159,29 @@ See the [schema diagram](docs/schema.md), [business queries](db/queries.sql), an
 
 ### Scheduled recipe sync (Milestone 3)
 
-The [Recipe sync workflow](.github/workflows/sync.yml) runs every six hours during
-the assignment to allow time to collect at least three scheduled runs. It runs
-at 01:17, 07:17, 13:17, and 19:17 UTC, away from the top of the hour. Each scan
-makes 26 paced TheMealDB requests, for 104 requests per day before retries.
-After the assignment, I'm expecting to change the  schedule to daily or less often based
-on how infrequently the source changes.
+The [Recipe sync workflow](.github/workflows/sync.yml) runs once a week on
+Sundays at 01:17 UTC. Each scheduled scan makes 26 paced TheMealDB requests,
+one for each letter, before retries. The Milestone 3 evidence was collected
+on a six-hour schedule.
+
+The app warns when the last successful sync is more than eight days old,
+allowing one day for delays after the weekly run is due. The app caches
+catalog queries and the freshness lookup with a 10-minute `st.cache_data`
+TTL, which is shorter than the weekly sync interval. A longer TTL would keep
+old results visible longer after a sync. A shorter TTL would send more
+repeated queries to Supabase as people browse.
 
 Set `DATABASE_URL` in the repository's Actions secrets to the Supabase owner
 Session pooler connection string. Once the workflow is on `main`, select
 **Actions → Recipe sync → Run workflow** to verify it. The manual run is logged
-in `sync_runs` with `trigger = 'manual'`. The three assignment runs are logged
+in `sync_runs` with `trigger = 'manual'`. The Milestone 3 scheduled runs are logged
 with `trigger = 'schedule'`.
 
 <!-- Keep this current: how to run the sync, the website, and the evaluations. -->
 
 ## Credits
 
-Recipe data: [TheMealDB](https://www.themealdb.com/). See its
+Recipes and photos: [TheMealDB](https://www.themealdb.com/). See its
 [API documentation](https://www.themealdb.com/documentation) and
 [terms of use](https://www.themealdb.com/terms_of_use.php). Recipe records retain their original source
 links where provided.
