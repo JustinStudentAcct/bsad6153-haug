@@ -9,6 +9,7 @@
 - Offer name search alongside category browsing. Searching for part of a
   known recipe name takes users straight to the results. Keep the page
   picker at both ends of long lists and synchronize the two controls.
+  **Random** gives users another way to browse within their current filters.
 - Check mobile spacing in a browser. Streamlit's defaults added extra
   space above recipe titles. Measuring the rendered cards helped isolate
   the heading padding and remove it only from the previews. Checking the

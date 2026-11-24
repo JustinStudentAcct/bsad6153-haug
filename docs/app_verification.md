@@ -31,10 +31,24 @@ For the Pantry number, run [query 2](../db/queries.sql) as written and read
 | Browse and search | Category results matched the catalog. A partial, mixed-case search for Carbonara found Spaghetti alla Carbonara. Search and category worked together. |
 | Pantry ranking | Eggs, rice, and garlic produced the same recipes and counts, in the same order, as the Milestone 2 reference query. |
 | Acaraje checklist | Marking garlic and salt as on hand matched the reference shopping list and preserved both red onion ingredient lines. |
-| Pagination | Changing either page picker updated the recipe cards and the other picker. Changing a filter reset the results to page 1. |
-| Mobile layout | Search and Category fit side by side at 320 px and 390 px. Recipe titles and thumbnails had equal outer spacing on desktop and at 390 px. The recipe button opened the detail view. |
+| Pagination | Changing either picker updated the recipe cards and the other picker. Changing a filter reset the results to page 1. On `milestone-3`, **Random** worked from both ends of the results, selected a different page, and stayed within the eight Chicken result pages when filtered. |
+| Mobile layout | Search and Category fit side by side at 320 px and 390 px. The Page picker and Random button fit side by side at 320 px. Recipe cards opened by click or keyboard. |
 | Photos | The project owner confirmed the Carbonara photo loaded. The renderer accepted all 790 stored image URLs in the snapshot. |
 | Freshness and failures | The sync text appeared to the left of the three-dot menu on desktop and at 320 px. The displayed minute, 10:58 UTC on November 24, matched the successful `sync_runs.finished_at` value of `2026-11-24 10:58:59.976065+00`. Lowering the threshold for a test produced the stale warning. Earlier simulations covered database failures, retries, and empty results. |
+
+## Public Render check
+
+On November 24, [Meal Ideas on Render](https://bsad6153-haug.onrender.com/)
+opened without sign-in, displayed the last successful sync in the toolbar,
+and included the free-tier wake-up note. The live app displayed 790 total
+recipes, 80 Chicken recipes, and 9 additional ingredients for the first
+eggs, rice, and garlic Pantry match. Searching for Acaraje and selecting
+its card opened the checklist. Checking red onions moved both measures
+to **On hand**.
+
+At the time of the check, GitHub's `main` was at `0cc038f`. The Random
+controls were tested locally and pushed to `milestone-3` in `ff1e8f6`.
+They require a merge to `main` and a Render deploy to appear on the site.
 
 ## Read-only proof
 
@@ -47,5 +61,6 @@ recipes`). The transaction was rolled back.
 update public.recipes set name = name where false;
 ```
 
-Repeat the probe using the deployed app's credentials after publishing to
-Render. The deployed role check and public URL have yet to be recorded.
+The deployed app returned catalog results through code that checks for
+`app_reader`. The separate write-permission probe using the deployed
+connection string still needs to be recorded.

@@ -36,8 +36,9 @@ designated private by the [Milestone 1 ethics check](data_dictionary.md#data-use
   has succeeded. Eight days allows one day of leeway for the weekly sync.
 - Browse and Pantry answer Q01 and Q02 using the Milestone 2 queries.
   Changing a selection changes the parameterized query. Both ends of a
-  results list offer synced page pickers. A recipe opened from either view
-  supports the Q03 checklist.
+  results list offer synced page pickers and a **Random** button that stays
+  within the current results. A recipe opened from either view supports
+  the Q03 checklist.
 - Empty results and database failures show distinct, plain messages.
   Users can clear their filters or retry after a database error.
 - Use `st.cache_data(ttl=600)` for database reads. Explain in the README
