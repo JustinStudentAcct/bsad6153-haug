@@ -5,6 +5,7 @@ Run with streamlit run app/streamlit_app.py.
 
 import os
 from datetime import datetime, timezone
+from random import randrange
 from string import punctuation
 from urllib.parse import urlsplit
 
@@ -210,15 +211,33 @@ def _sync_page_picker(source_key, other_key):
     st.session_state[other_key] = st.session_state[source_key]
 
 
+def _random_result_page(page_count, key, other_key):
+    page = randrange(1, page_count)
+    if page >= st.session_state[key]:
+        page += 1
+    st.session_state[key] = page
+    _sync_page_picker(key, other_key)
+
+
 def _page_picker(page_count, key, other_key):
-    return st.number_input(
-        "Page",
-        min_value=1,
-        max_value=page_count,
-        key=key,
-        on_change=_sync_page_picker,
-        args=(key, other_key),
-    )
+    with st.container(key=f"page_controls_{key}"):
+        page_col, random_col = st.columns(2, gap="small", vertical_alignment="bottom")
+        page = page_col.number_input(
+            "Page",
+            min_value=1,
+            max_value=page_count,
+            key=key,
+            on_change=_sync_page_picker,
+            args=(key, other_key),
+        )
+        random_col.button(
+            "Random",
+            key=f"random_{key}",
+            width="stretch",
+            on_click=_random_result_page,
+            args=(page_count, key, other_key),
+        )
+    return page
 
 
 def _show_results(recipes, pantry_keys=()):
@@ -376,8 +395,13 @@ def main():
         .st-key-freshness_status [data-testid="stAlert"] p {
             font-weight: 600;
         }
-        .st-key-browse_filters [data-testid="stHorizontalBlock"] { flex-wrap: nowrap; }
-        .st-key-browse_filters [data-testid="stColumn"] { flex: 1 1 0; min-width: 0; }
+        :is(.st-key-browse_filters, [class*="st-key-page_controls_"]) [data-testid="stHorizontalBlock"] {
+            flex-wrap: nowrap;
+        }
+        :is(.st-key-browse_filters, [class*="st-key-page_controls_"]) [data-testid="stColumn"] {
+            flex: 1 1 0;
+            min-width: 0;
+        }
         [class*="st-key-recipe_preview_"] { position: relative; }
         [class*="st-key-recipe_preview_"] [data-testid="stHorizontalBlock"]:has([data-testid="stImage"]) {
             display: grid;

@@ -53,7 +53,8 @@ repository root. It should end with `Setup OK`.
 ### Using the Week 4 app
 
 - **Browse** by partial recipe name, category, or both. For example, type
-  `carbonara` and press Enter. Use either page picker to move through results.
+  `carbonara` and press Enter. Use either page picker to move through results,
+  or select **Random** to jump to a different page within your current filters.
 - **Pantry** finds recipes that contain every selected ingredient. The
   results are ranked by the fewest additional distinct ingredients.
 - Select any recipe card to see its photo, shopping checklist, and cooking
