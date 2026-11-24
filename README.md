@@ -2,8 +2,7 @@
 
 **Student:** Justin Haug
 **My decision:** I want to decide what meals to prepare based on my preferences and available ingredients, and what ingredients I need to buy.
-**Website:** The Week 4 app has been verified locally. A Render URL has yet to
-be recorded.
+**Website:** [Meal Ideas on Render](https://bsad6153-haug.onrender.com/)
 
 The Week 4 web app helps users discover recipes, choose a meal, and build
 a shopping checklist that omits ingredients they already have. Grocery
@@ -20,7 +19,7 @@ own data. You build it with an AI coding agent, and you read and verify everythi
 
 ---
 
-## Setting up your computer (Week 1 Setup)
+## Run Meal Ideas locally
 
 You need a **Windows 10/11 or macOS computer where you can install software**, Git, Python 3.12, and your AI
 coding agent (Claude Code, Codex, Antigravity, or Copilot). Let your agent help with the installs, but read
@@ -37,11 +36,19 @@ every command before you approve it, and keep auto-approve off.
 
    You'll see `(.venv)` at the start of your prompt when it's active. Activate it every time you open a new terminal.
 3. **Install the packages:** `pip install -r requirements.txt`
-4. **Create your secrets file:** copy `.env.example` to `.env`, and put a fake value on the `TEST_SECRET=` line.
-5. **Check everything:** `python scripts/check_setup.py` should end with `Setup OK`.
-6. **Try the website:** Set `APP_DATABASE_URL` in `.env` to the Supabase
-   Session pooler connection string for `app_reader`. From the repository
-   root, run `streamlit run app/streamlit_app.py`. Press Ctrl+C to stop it.
+4. **Configure the database.** Copy `.env.example` to `.env` if you haven't
+   created it yet. Set `APP_DATABASE_URL` to the Supabase Session pooler
+   connection string for `app_reader`.
+5. **Start the app** from the repository root:
+
+   ```bash
+   streamlit run app/streamlit_app.py
+   ```
+
+   Open the local URL printed in the terminal. Press Ctrl+C to stop the app.
+
+To verify your setup, run `python scripts/check_setup.py` from the
+repository root. It should end with `Setup OK`.
 
 ### Using the Week 4 app
 
