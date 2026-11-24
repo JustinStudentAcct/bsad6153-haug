@@ -43,6 +43,9 @@ def _freshness_banner():
     except psycopg.errors.UndefinedTable:
         st.warning("Recipe sync history is unavailable.")
         return
+    except psycopg.Error:
+        st.caption("Recipe sync status is temporarily unavailable.")
+        return
     if finished_at is None:
         st.warning("The recipe catalog has never synced successfully.")
         return
@@ -97,45 +100,47 @@ def _pantry_matches(ingredient_keys):
 def _remember(widget_key, state_key):
     st.session_state[state_key] = st.session_state[widget_key]
     st.session_state.pop("result_page", None)
+    st.session_state.pop("result_page_bottom", None)
 
 
 def _reset_selection(widget_key, state_key, value):
     st.session_state[widget_key] = value
-    st.session_state[state_key] = value
-    st.session_state.pop("result_page", None)
+    _remember(widget_key, state_key)
 
 
 def _browse_view():
-    st.session_state.setdefault("recipe_search_widget", st.session_state.get("recipe_search", ""))
-    recipe_name = st.text_input(
-        "Search by recipe name",
-        placeholder="e.g. carbonara",
-        key="recipe_search_widget",
-        on_change=_remember,
-        args=("recipe_search_widget", "recipe_search"),
-    )
-    if recipe_name:
-        st.button(
-            "Clear search",
-            on_click=_reset_selection,
-            args=("recipe_search_widget", "recipe_search", ""),
-        )
-
     categories = [
         category for (category,) in _read_catalog(
             "select distinct category from public.recipes order by category"
         )
     ]
     selected = st.session_state.get("browse_category")
+    st.session_state.setdefault("recipe_search_widget", st.session_state.get("recipe_search", ""))
     st.session_state.setdefault("category_widget", selected if selected in categories else None)
-    category = st.selectbox(
-        "Category",
-        [None, *categories],
-        format_func=lambda value: "All categories" if value is None else value,
-        key="category_widget",
-        on_change=_remember,
-        args=("category_widget", "browse_category"),
-    )
+
+    with st.container(key="browse_filters"):
+        search_col, category_col = st.columns(2, gap="small", vertical_alignment="bottom")
+        recipe_name = search_col.text_input(
+            "Search by recipe name",
+            placeholder="e.g. carbonara",
+            key="recipe_search_widget",
+            on_change=_remember,
+            args=("recipe_search_widget", "recipe_search"),
+        )
+        category = category_col.selectbox(
+            "Category",
+            [None, *categories],
+            format_func=lambda value: "All categories" if value is None else value,
+            key="category_widget",
+            on_change=_remember,
+            args=("category_widget", "browse_category"),
+        )
+    if recipe_name:
+        st.button(
+            "Clear search",
+            on_click=_reset_selection,
+            args=("recipe_search_widget", "recipe_search", ""),
+        )
     if category is not None:
         st.button(
             "Clear category",
@@ -187,7 +192,7 @@ def _web_url(value):
 def _recipe_photo(image_url, width):
     url = _web_url(image_url)
     if url and url.scheme == "https" and url.netloc in {"themealdb.com", "www.themealdb.com"}:
-        st.image(image_url, caption="Photo via TheMealDB", width=width)
+        st.image(image_url, width=width)
 
 
 def _open_recipe(meal_id, pantry_keys):
@@ -199,6 +204,21 @@ def _close_recipe():
     st.session_state.pop("recipe_id", None)
 
 
+def _sync_page_picker(source_key, other_key):
+    st.session_state[other_key] = st.session_state[source_key]
+
+
+def _page_picker(page_count, key, other_key):
+    return st.number_input(
+        "Page",
+        min_value=1,
+        max_value=page_count,
+        key=key,
+        on_change=_sync_page_picker,
+        args=(key, other_key),
+    )
+
+
 def _show_results(recipes, pantry_keys=()):
     if not recipes:
         st.info("No recipes match. Try changing or clearing your selections.")
@@ -207,24 +227,32 @@ def _show_results(recipes, pantry_keys=()):
     page_count = (len(recipes) + PAGE_SIZE - 1) // PAGE_SIZE
     page = 1
     if page_count > 1:
-        page = st.number_input("Page", min_value=1, max_value=page_count, key="result_page")
+        current_page = min(st.session_state.get("result_page", 1), page_count)
+        for key in ("result_page", "result_page_bottom"):
+            if st.session_state.get(key) != current_page:
+                st.session_state[key] = current_page
+        page = _page_picker(page_count, "result_page", "result_page_bottom")
     st.caption(f"{len(recipes)} recipes · Page {page} of {page_count}")
     start = (page - 1) * PAGE_SIZE
     for meal_id, name, category, image_url, other_ingredients in recipes[start:start + PAGE_SIZE]:
-        with st.container(border=True):
-            _recipe_photo(image_url, 180)
+        with st.container(border=True, gap="xsmall", key=f"recipe_preview_{meal_id}"):
             st.subheader(name)
-            if other_ingredients is None:
-                st.caption(category)
-            else:
-                st.caption(f"{category} · Other ingredients: {other_ingredients}")
-            st.button(
-                "View recipe",
-                key=f"open_{meal_id}",
-                help=name,
-                on_click=_open_recipe,
-                args=(meal_id, pantry_keys),
-            )
+            with st.container(horizontal=True, vertical_alignment="center"):
+                _recipe_photo(image_url, 128)
+                with st.container(gap="xsmall"):
+                    if other_ingredients is None:
+                        st.caption(category)
+                    else:
+                        st.caption(f"{category} · Other ingredients: {other_ingredients}")
+                    st.button(
+                        "View recipe",
+                        key=f"open_{meal_id}",
+                        help=name,
+                        on_click=_open_recipe,
+                        args=(meal_id, pantry_keys),
+                    )
+    if page_count > 1:
+        _page_picker(page_count, "result_page_bottom", "result_page")
 
 
 def _save_checklist(meal_id):
@@ -301,6 +329,9 @@ def main():
     st.html(
         """
         <style>
+        .st-key-browse_filters [data-testid="stHorizontalBlock"] { flex-wrap: nowrap; }
+        .st-key-browse_filters [data-testid="stColumn"] { flex: 1 1 0; min-width: 0; }
+        [class*="st-key-recipe_preview_"] h3 { padding-top: 0; }
         [data-testid="stAlert"] { filter: grayscale(1); }
         .st-key-mode, .st-key-recipe_search_widget, .st-key-category_widget, .st-key-pantry_widget,
         .st-key-checklist_widget, [data-testid="stButton"],
@@ -313,7 +344,6 @@ def main():
         if not os.environ.get("APP_DATABASE_URL"):
             _retry_message()
         else:
-            _freshness_banner()
             st.write("Find a dinner idea and see what you still need to buy.")
             recipe_id = st.session_state.get("recipe_id")
             if recipe_id:
@@ -325,6 +355,7 @@ def main():
                     ["Browse", "Pantry"],
                     horizontal=True,
                     key="mode",
+                    label_visibility="collapsed",
                     on_change=_remember,
                     args=("mode", "selected_mode"),
                 )
@@ -335,7 +366,12 @@ def main():
     except psycopg.Error:
         _retry_message()
 
-    st.caption("BSAD 6153 course demo · Recipe data from [TheMealDB](https://www.themealdb.com/).")
+    if os.environ.get("APP_DATABASE_URL"):
+        _freshness_banner()
+    st.caption(
+        "BSAD 6153 course demo · All recipes and photos provided by "
+        "[TheMealDB](https://www.themealdb.com/)."
+    )
 
 
 if __name__ == "__main__":
