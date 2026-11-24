@@ -97,6 +97,9 @@ Supabase.
 
 ## Deploying on Render (Week 4)
 
+Deploy from the repository’s `main` branch as a **Web Service** on Render’s
+**Free** instance type.
+
 1. Claim your free domain through the GitHub Student Developer Pack.
 2. In Render, choose **New &gt; Blueprint**, pick this repository, and enter each secret when asked.
    (`render.yaml` describes the service.) Or create a **Web Service** by hand with:
@@ -105,7 +108,11 @@ Supabase.
    - Environment variables: `PYTHON_VERSION=3.12.4`, `APP_DATABASE_URL`, and later your LLM key and `APP_PASSWORD`
 3. Under **Settings &gt; Custom Domains**, add your domain, then add the DNS records Render shows you at your
    registrar. Ask your agent to explain each record before you add it. HTTPS turns on automatically.
-4. Free services sleep when idle and take about a minute to wake. Say so on your site.
+
+Render’s Free web services sleep after 15 minutes without incoming traffic.
+The next visit wakes the service and may show Render’s loading page for
+about a minute before Meal Ideas opens. The app footer includes this
+wake-up note. [Render’s Free web service documentation](https://render.com/docs/free#spinning-down-on-idle)
 
 ---
 

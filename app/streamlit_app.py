@@ -467,6 +467,7 @@ def main():
     except psycopg.Error:
         _retry_message()
 
+    st.caption("On Render’s free plan, the app sleeps when idle and can take about a minute to wake up.")
     st.caption(
         "BSAD 6153 course demo · All recipes and photos provided by "
         "[TheMealDB](https://www.themealdb.com/)."
