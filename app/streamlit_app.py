@@ -69,15 +69,16 @@ def _freshness_banner():
         st.caption(message)
 
 
-def _browse_recipes(category):
+def _browse_recipes(category, recipe_name):
     return _read_catalog(
         """
         select meal_id, name, category, image_url, null as other_ingredients
         from public.recipes
         where (%s::text is null or category = %s)
+          and strpos(lower(name), lower(%s::text)) > 0
         order by category, name, meal_id
         """,
-        (category, category),
+        (category, category, recipe_name),
     )
 
 
@@ -112,6 +113,21 @@ def _reset_selection(widget_key, state_key, value):
 
 
 def _browse_view():
+    st.session_state.setdefault("recipe_search_widget", st.session_state.get("recipe_search", ""))
+    recipe_name = st.text_input(
+        "Search by recipe name",
+        placeholder="e.g. carbonara",
+        key="recipe_search_widget",
+        on_change=_remember,
+        args=("recipe_search_widget", "recipe_search"),
+    )
+    if recipe_name:
+        st.button(
+            "Clear search",
+            on_click=_reset_selection,
+            args=("recipe_search_widget", "recipe_search", ""),
+        )
+
     categories = [
         category for (category,) in _read_catalog(
             "select distinct category from public.recipes order by category"
@@ -133,7 +149,7 @@ def _browse_view():
             on_click=_reset_selection,
             args=("category_widget", "browse_category", None),
         )
-    _show_results(_browse_recipes(category))
+    _show_results(_browse_recipes(category, recipe_name.strip()))
 
 
 def _pantry_view():
@@ -295,7 +311,7 @@ def main():
         """
         <style>
         [data-testid="stAlert"] { filter: grayscale(1); }
-        .st-key-mode, .st-key-category_widget, .st-key-pantry_widget,
+        .st-key-mode, .st-key-recipe_search_widget, .st-key-category_widget, .st-key-pantry_widget,
         .st-key-checklist_widget, [data-testid="stButton"],
         [data-testid="stLinkButton"], [data-testid="stNumberInput"] { filter: grayscale(1); }
         </style>
