@@ -1,8 +1,6 @@
 """Week 4 recipe catalog and session-only shopping checklist.
 
-Run with streamlit run app/streamlit_app.py. To display photos, set
-APP_APPROVED_PHOTO_MEAL_IDS to comma-separated meal IDs for which the
-TheMealDB credit shown in the app satisfies the photo's terms.
+Run with streamlit run app/streamlit_app.py.
 """
 
 import os
@@ -19,11 +17,6 @@ CACHE_SECONDS = 600
 PAGE_SIZE = 10
 # One day of leeway after the weekly sync is due.
 DEFAULT_FRESHNESS_HOURS = 192
-APPROVED_PHOTO_IDS = {
-    meal_id.strip()
-    for meal_id in os.environ.get("APP_APPROVED_PHOTO_MEAL_IDS", "").split(",")
-    if meal_id.strip()
-}
 
 
 @st.cache_data(ttl=CACHE_SECONDS, show_spinner=False)
@@ -191,9 +184,7 @@ def _web_url(value):
     return None
 
 
-def _recipe_photo(meal_id, image_url, width):
-    if meal_id not in APPROVED_PHOTO_IDS:
-        return
+def _recipe_photo(image_url, width):
     url = _web_url(image_url)
     if url and url.scheme == "https" and url.netloc in {"themealdb.com", "www.themealdb.com"}:
         st.image(image_url, caption="Photo via TheMealDB", width=width)
@@ -221,7 +212,7 @@ def _show_results(recipes, pantry_keys=()):
     start = (page - 1) * PAGE_SIZE
     for meal_id, name, category, image_url, other_ingredients in recipes[start:start + PAGE_SIZE]:
         with st.container(border=True):
-            _recipe_photo(meal_id, image_url, 180)
+            _recipe_photo(image_url, 180)
             st.subheader(name)
             if other_ingredients is None:
                 st.caption(category)
@@ -267,7 +258,7 @@ def _recipe_detail(meal_id):
     )
     st.header(name)
     st.caption(category)
-    _recipe_photo(meal_id, image_url, "stretch")
+    _recipe_photo(image_url, "stretch")
     if _web_url(source_url):
         st.link_button("Original recipe", source_url)
 
