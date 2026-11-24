@@ -1,11 +1,11 @@
 # Lessons learned
 
-## Week 4 · Recipe Generator
+## Week 4 · Meal Ideas
 
 - Use the milestone SQL to verify what users see. Comparing the live pantry
   ranking and Acaraje checklist against the queries confirmed the order,
-  counts, and ingredient lines. Keep repeated lines in source order and
-  flag missing quantities explicitly.
+  counts, and ingredient lines. Retain each measure when grouping repeated
+  ingredients and flag missing quantities explicitly.
 - Offer name search alongside category browsing. Searching for part of a
   known recipe name takes users straight to the results. Keep the page
   picker at both ends of long lists and synchronize the two controls.
@@ -18,7 +18,6 @@
   snapshot contained 790 image URLs. A single Carbonara image worked in
   the local app before the project owner approved enabling the full
   catalog. The footer now credits TheMealDB for recipes and photos.
-- Record design decisions that differ from the rubric. Moving sync
-  status to the footer made the browsing screen shorter. The Week 4
-  rubric specifies a top-of-page banner, so document the difference
-  before submitting.
+- Check layout changes against the rubric. The freshness status moved to
+  the footer during UI iteration. The Week 4 requirement calls for it at
+  the top, so the final layout places it beside the three-dot menu.

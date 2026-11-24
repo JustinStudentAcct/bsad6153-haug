@@ -49,13 +49,14 @@ every command before you approve it, and keep auto-approve off.
   `carbonara` and press Enter. Use either page picker to move through results.
 - **Pantry** finds recipes that contain every selected ingredient. The
   results are ranked by the fewest additional distinct ingredients.
-- **View recipe** shows the photo, ingredients, measures, and instructions.
-  Mark what you already have to update the shopping checklist. Those
-  selections stay in the current session.
+- Select any recipe card to see its photo, shopping checklist, and cooking
+  instructions. Mark what you already have to move it from **To buy** to
+  **On hand**. Those selections stay in the current session.
 
-The footer shows the last successful catalog sync and credits TheMealDB
-for recipes and photos. See the [Week 4 verification notes](docs/app_verification.md)
-for the cases checked against Supabase.
+The top toolbar shows the last successful catalog sync and its age to the left
+of the three-dot menu. The footer credits TheMealDB for recipes and photos. See the
+[Week 4 verification notes](docs/app_verification.md) for the checks against
+Supabase.
 
 ### Working with your AI agent
 

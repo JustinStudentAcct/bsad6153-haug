@@ -1,4 +1,4 @@
-# Recipe Generator · Week 4 app spec
+# Meal Ideas · Week 4 app spec
 
 ## Audience and questions
 
@@ -13,9 +13,10 @@ synced TheMealDB catalog and builds a shopping checklist for one recipe.
    three and need the fewest other ingredients? Require every selected
    ingredient and rank by the count of other distinct ingredient names.
 3. **Checklist (Q03).** What should I buy for Acaraje if I have garlic and
-   salt? Show recipe instructions and ordered ingredients with measures.
-   Let users exclude items they have. Preserve repeated lines, flag missing
-   measures, and keep selections in the current session.
+   salt? Show recipe instructions and a checklist with measures. Move items
+   between **To buy** and **On hand**. Group repeated ingredients while
+   retaining each measure, flag missing measures, and keep selections in
+   the current session.
 
 These questions use [SQL queries 1–3](../db/queries.sql),
 [golden questions Q01–Q03](../evals/golden_questions.csv), and the
@@ -30,10 +31,9 @@ designated private by the [Milestone 1 ethics check](data_dictionary.md#data-use
 
 ## Done when
 
-- Show the latest successful `sync_runs.finished_at` and its age. Warn after
-  eight days or if no sync has succeeded. The rubric calls for a banner at
-  the top. The implemented app places this status in the footer at the
-  project owner's request.
+- The top toolbar shows the latest successful
+  `sync_runs.finished_at` and its age. Warn after eight days or if no sync
+  has succeeded. Eight days allows one day of leeway for the weekly sync.
 - Browse and Pantry answer Q01 and Q02 using the Milestone 2 queries.
   Changing a selection changes the parameterized query. Both ends of a
   results list offer synced page pickers. A recipe opened from either view

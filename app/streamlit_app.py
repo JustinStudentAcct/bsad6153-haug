@@ -46,7 +46,7 @@ def _freshness_banner():
         st.warning("Recipe sync history is unavailable.")
         return
     except psycopg.Error:
-        st.caption("Recipe sync status is temporarily unavailable.")
+        st.warning("Recipe sync status is temporarily unavailable.")
         return
     if finished_at is None:
         st.warning("The recipe catalog has never synced successfully.")
@@ -62,7 +62,7 @@ def _freshness_banner():
     except ValueError:
         warning_hours = DEFAULT_FRESHNESS_HOURS
     if age_hours > warning_hours:
-        st.warning("Recipe data may be out of date. " + message)
+        st.warning("⚠️ Recipe data may be out of date. " + message)
     else:
         st.caption(message)
 
@@ -238,21 +238,21 @@ def _show_results(recipes, pantry_keys=()):
     start = (page - 1) * PAGE_SIZE
     for meal_id, name, category, image_url, other_ingredients in recipes[start:start + PAGE_SIZE]:
         with st.container(border=True, gap="xsmall", key=f"recipe_preview_{meal_id}"):
-            st.subheader(name)
-            with st.container(horizontal=True, vertical_alignment="center"):
-                _recipe_photo(image_url, 128)
+            with st.container(horizontal=True):
+                _recipe_photo(image_url, "stretch")
                 with st.container(gap="xsmall"):
-                    if other_ingredients is None:
+                    st.subheader(name, anchor=False)
+                    with st.container(key=f"recipe_category_{meal_id}"):
                         st.caption(category)
-                    else:
-                        st.caption(f"{category} · Other ingredients: {other_ingredients}")
-                    st.button(
-                        "View recipe",
-                        key=f"open_{meal_id}",
-                        help=name,
-                        on_click=_open_recipe,
-                        args=(meal_id, pantry_keys),
-                    )
+                    if other_ingredients is not None:
+                        st.caption(f"Other ingredients: {other_ingredients}")
+            st.button(
+                f"Open {name}",
+                key=f"recipe_open_{meal_id}",
+                width="stretch",
+                on_click=_open_recipe,
+                args=(meal_id, pantry_keys),
+            )
     if page_count > 1:
         _page_picker(page_count, "result_page_bottom", "result_page")
 
@@ -350,14 +350,63 @@ def _shopping_checklist(meal_id, slots):
 
 
 def main():
-    st.set_page_config(page_title="Recipe Generator")
+    st.set_page_config(page_title="Meal Ideas")
     st.set_option("client.showErrorDetails", "none")
     st.html(
         """
         <style>
+        [data-testid="stLayoutWrapper"]:has(> .st-key-freshness_status) {
+            position: fixed;
+            inset-block-start: .9375rem;
+            inset-inline-end: 3.5rem;
+            z-index: 999991;
+            width: min(24rem, calc(100vw - 4.5rem));
+            pointer-events: none;
+        }
+        .st-key-freshness_status p {
+            font-size: .75rem;
+            line-height: 1.2;
+            margin: 0;
+            text-align: end;
+        }
+        .st-key-freshness_status [data-testid="stAlert"] div {
+            background: transparent;
+            padding: 0;
+        }
+        .st-key-freshness_status [data-testid="stAlert"] p {
+            font-weight: 600;
+        }
         .st-key-browse_filters [data-testid="stHorizontalBlock"] { flex-wrap: nowrap; }
         .st-key-browse_filters [data-testid="stColumn"] { flex: 1 1 0; min-width: 0; }
-        [class*="st-key-recipe_preview_"] h3 { padding-top: 0; }
+        [class*="st-key-recipe_preview_"] { position: relative; }
+        [class*="st-key-recipe_preview_"] [data-testid="stHorizontalBlock"]:has([data-testid="stImage"]) {
+            display: grid;
+            grid-template-columns: min(200px, 45%) minmax(0, 1fr);
+            align-items: start;
+        }
+        [class*="st-key-recipe_preview_"] h3 { padding-block: 0; overflow-wrap: anywhere; }
+        [class*="st-key-recipe_preview_"] [data-testid="stHeading"] [data-testid="stMarkdownContainer"] {
+            margin-bottom: 0;
+        }
+        [class*="st-key-recipe_category_"] p { font-size: 14pt; }
+        [class*="st-key-recipe_preview_"] [data-testid="stElementToolbar"] { display: none; }
+        [class*="st-key-recipe_open_"] {
+            position: absolute;
+            inset: 0;
+            z-index: 2;
+        }
+        [class*="st-key-recipe_open_"] [data-testid="stButton"],
+        [class*="st-key-recipe_open_"] button { width: 100%; height: 100%; }
+        [class*="st-key-recipe_open_"] button { opacity: 0; cursor: pointer; }
+        [class*="st-key-recipe_preview_"]:has([class*="st-key-recipe_open_"] button:focus-visible) {
+            outline: 2px solid currentColor;
+            outline-offset: 2px;
+        }
+        @media (hover: hover) {
+            [class*="st-key-recipe_preview_"]:hover {
+                background: color-mix(in srgb, currentColor 4%, transparent);
+            }
+        }
         .st-key-checklist_on_hand {
             background: color-mix(in srgb, currentColor 6%, transparent);
             border-radius: .5rem;
@@ -385,9 +434,15 @@ def main():
         </style>
         """
     )
-    st.title("Recipe Generator")
+    database_configured = bool(os.environ.get("APP_DATABASE_URL"))
+    with st.container(key="freshness_status"):
+        if database_configured:
+            _freshness_banner()
+        else:
+            st.warning("Recipe sync status is temporarily unavailable.")
+    st.title("Meal Ideas")
     try:
-        if not os.environ.get("APP_DATABASE_URL"):
+        if not database_configured:
             _retry_message()
         else:
             st.write("Find a dinner idea and see what you still need to buy.")
@@ -412,8 +467,6 @@ def main():
     except psycopg.Error:
         _retry_message()
 
-    if os.environ.get("APP_DATABASE_URL"):
-        _freshness_banner()
     st.caption(
         "BSAD 6153 course demo · All recipes and photos provided by "
         "[TheMealDB](https://www.themealdb.com/)."
