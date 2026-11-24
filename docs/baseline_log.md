@@ -6,7 +6,7 @@
 Log each decision **while it happens**. Time yourself with a timer; don't estimate afterward.
 Mark any entry you had to reconstruct from memory as *(reconstructed)*.
 
-|Date|What I was deciding|What I looked at|Time (min)|What I wished I knew|Confidence (1–5)|Sentiment|
+|Date|What I was deciding|What I looked at|Time (min)|What I wished I knew|Confidence (1–5)|Sentiment (1 bad, 2 neutral, 3 good)|
 |-|-|-|-|-|-|-|
 |10-26-2026|What to have for dinner|My pantry, fridge, freezer, wife, kids|20 minutes (RECONSTRUCTED)|Nothing more|5 (most confident)|2|
 |10-27-2026|What to have for dinner|Talked w/ wife|10 seconds (RECONSTRUCTED)|Nothing more|5 (most confident)|2|
@@ -34,7 +34,10 @@ Mark any entry you had to reconstruct from memory as *(reconstructed)*.
 |11-17-2026|What to have for dinner|Fridge, Pantry, Freezer, Wife,  Kids|14 minutes|nothing more|5 (most confident)|2|
 |11-18-2026|What to have for dinner|Fridge, Pantry, Freezer, Wife,  Kids|1 minutes|nothing more|5 (most confident)|3|
 |11-19-2026|What to have for dinner|Fridge, Pantry, Freezer, Wife,  Kids|13 minutes|nothing more|5 (most confident)|2|
-|11-20-2026|What to have for dinner|Wife|1 minutes|nothing more|5 (most confident)|5|
+|11-20-2026|What to have for dinner|Wife|1 minutes|nothing more|5 (most confident)|3|
+|11-21-2026|What to have for dinner|Wife, kids, MIL |1 minute|nothing more|5 (most confident)|3|
+|11-22-2026|What to have for dinner|Wife, kids, Fridge, Freezer, Pantry |3 minute|nothing more|5 (most confident)|3|
+|11-23-2026|What to have for dinner|Wife, Fridge, Freezer, Pantry |6 minute|nothing more|5 (most confident)|3|
 
 ## Reflection
 
