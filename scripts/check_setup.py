@@ -63,7 +63,7 @@ env_file = ROOT / ".env"
 if env_file.exists():
     ok(".env exists")
 else:
-    fail(".env not found", "copy .env.example to .env, then put a fake TEST_SECRET value in it")
+    fail(".env not found", "copy .env.example to .env")
 
 # 5. .gitignore protects .env, so Git never uploads it.
 gitignore = ROOT / ".gitignore"
